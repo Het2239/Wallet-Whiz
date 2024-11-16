@@ -1,2 +1,4 @@
 Het, Modified salary, new salary, 25000.00, December, 1, 2024
 Het, Bonus, bonus salary, 5000.00, November, 16, 2024
+Het, salary, bonus , 0.00, November, 16, 2024
+Het, Stock Market, profit, 500.00, November, 16, 2024

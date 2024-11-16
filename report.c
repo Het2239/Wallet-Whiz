@@ -44,7 +44,7 @@ void monthlyexpenseReport(char *username) {
     int date = 0;
     float totalinc = 0;
 
-    printf("                    Would you like to:\n                    1. Enter the date manually\n                    2. Use the current date\n                   Enter your choice: ");
+    printf("                    Would you like to:\n                    1. Enter the date manually\n                    2. Use the current date\n                    Enter your choice: ");
     int dateChoice;
     scanf("%d", &dateChoice);
 
@@ -59,7 +59,7 @@ void monthlyexpenseReport(char *username) {
         getCurrentDater(monthcheck, &date, &yearcheck);
         printf("                    Using current month: %s, %d\n", monthcheck, yearcheck);
     } else {
-        printf("                    Invalid choice. Please try again.\n");
+        printf("                    \033[31mInvalid choice. Please try again.\033[0m\n");
         return;
     }
 
@@ -100,10 +100,10 @@ void monthlyexpenseReport(char *username) {
                 minIncomeDetails = details;
             }
 
-            printf("                    Name: %s\n", details.name);
-            printf("                    Description: %s\n", details.description);
-            printf("                    Amount: %.2f\n", details.amount);
-            printf("                    Date: %s %d, %d\n", details.month, details.date, details.year);
+            printf("                    \033[1;32mName:\033[0m %s\n", details.name);
+            printf("                    \033[1;32mDescription:\033[0m %s\n", details.description);
+            printf("                    \033[1;32mAmount:\033[0m %.2f\n", details.amount);
+            printf("                    \033[1;32mDate:\033[0m %s %d, %d\n", details.month, details.date, details.year);
             printf("                    -----------------------------------------------------------\n");
         }
     }
@@ -112,8 +112,8 @@ void monthlyexpenseReport(char *username) {
     if (found) {
         printf("                    The total monthly income for %s in %s %d is: %.2f\n", username, monthcheck, yearcheck, totalinc);
         printf("                    -----------------------------------------------------------\n");
-        printf("                    Maximum Income: %.2f (Name: %s, Description: %s, Date: %s %d, %d)\n", maxIncome, maxIncomeDetails.name, maxIncomeDetails.description, maxIncomeDetails.month, maxIncomeDetails.date, maxIncomeDetails.year);
-        printf("                    Minimum Income: %.2f (Name: %s, Description: %s, Date: %s %d, %d)\n", minIncome, minIncomeDetails.name, minIncomeDetails.description, minIncomeDetails.month, minIncomeDetails.date, minIncomeDetails.year);
+        printf("                    Maximum Income: \033[32m%.2f\033[0m (Name: %s, Description: %s, Date: %s %d, %d)\n", maxIncome, maxIncomeDetails.name, maxIncomeDetails.description, maxIncomeDetails.month, maxIncomeDetails.date, maxIncomeDetails.year);
+        printf("                    Minimum Income: \033[32m%.2f\033[0m (Name: %s, Description: %s, Date: %s %d, %d)\n", minIncome, minIncomeDetails.name, minIncomeDetails.description, minIncomeDetails.month, minIncomeDetails.date, minIncomeDetails.year);
         printf("                    -----------------------------------------------------------\n");
     } else {
         printf("                    No income found for user %s in %s %d\n", username, monthcheck, yearcheck);
@@ -158,11 +158,11 @@ void monthlyexpenseReport(char *username) {
                 minExpenseDetails = detail;
             }
 
-            printf("                    Name: %s\n", detail.name);
-            printf("                    Description: %s\n", detail.description);
-            printf("                    Category: %c\n", detail.category);
-            printf("                    Amount: %.2f\n", detail.amount);
-            printf("                    Date: %s %d, %d\n", detail.month, detail.date, detail.year);
+            printf("                    \033[1;31mName:\033[0m %s\n", detail.name);
+            printf("                    \033[1;31mDescription:\033[0m %s\n", detail.description);
+            printf("                    \033[1;31mCategory:\033[0m %c\n", detail.category);
+            printf("                    \033[1;31mAmount:\033[0m %.2f\n", detail.amount);
+            printf("                    \033[1;31mDate:\033[0m %s %d, %d\n", detail.month, detail.date, detail.year);
             printf("                    -----------------------------------------------------------\n");
         }
     }
@@ -171,8 +171,8 @@ void monthlyexpenseReport(char *username) {
     if (found) {
         printf("                    The total monthly expense for %s in %s %d is: %.2f\n", username, monthcheck, yearcheck, totalexp);
         printf("                    -----------------------------------------------------------\n");
-        printf("                    Maximum Expense: %.2f (Name: %s, Description: %s, Category: %c, Date: %s %d, %d)\n", maxExpense, maxExpenseDetails.name, maxExpenseDetails.description, maxExpenseDetails.category, maxExpenseDetails.month, maxExpenseDetails.date, maxExpenseDetails.year);
-        printf("                    Minimum Expense: %.2f (Name: %s, Description: %s, Category: %c, Date: %s %d, %d)\n", minExpense, minExpenseDetails.name, minExpenseDetails.description, minExpenseDetails.category, minExpenseDetails.month, minExpenseDetails.date, minExpenseDetails.year);
+        printf("                    Maximum Expense: \033[31m%.2f\033[0m (Name: %s, Description: %s, Category: %c, Date: %s %d, %d)\n", maxExpense, maxExpenseDetails.name, maxExpenseDetails.description, maxExpenseDetails.category, maxExpenseDetails.month, maxExpenseDetails.date, maxExpenseDetails.year);
+        printf("                    Minimum Expense: \033[31m%.2f\033[0m (Name: %s, Description: %s, Category: %c, Date: %s %d, %d)\n", minExpense, minExpenseDetails.name, minExpenseDetails.description, minExpenseDetails.category, minExpenseDetails.month, minExpenseDetails.date, minExpenseDetails.year);
         printf("                    -----------------------------------------------------------\n");
     } else {
         printf("                    No expenses found for user %s in %s %d\n", username, monthcheck, yearcheck);
@@ -180,8 +180,8 @@ void monthlyexpenseReport(char *username) {
     }
 
     float money=0;
-    printf("                    Total Income : %.2f\n",totalinc);
-    printf("                    Total Expense : %.2f\n",totalexp);
+    printf("                    Total Income : \033[32m%.2f\033[0m\n",totalinc);
+    printf("                    Total Expense : \033[31m%.2f\033[0m\n",totalexp);
     money=totalinc-totalexp;
     if (money>=0)
     {
@@ -202,7 +202,7 @@ void yearlyexpenseReport(char *username){
     int date = 0;
     float totalinc = 0;
 
-    printf("                    Would you like to:\n                    1. Enter the date manually\n                    2. Use the current date\n                   Enter your choice: ");
+    printf("                    Would you like to:\n                    1. Enter the date manually\n                    2. Use the current date\n                    Enter your choice: ");
     int dateChoice;
     scanf("%d", &dateChoice);
 
@@ -216,7 +216,7 @@ void yearlyexpenseReport(char *username){
         getCurrentDater(monthcheck, &date, &yearcheck);
         printf("                    Using current year: %d\n", yearcheck);
     } else {
-        printf("                    Invalid choice. Please try again.\n");
+        printf("                    \033[31mInvalid choice. Please try again.\033[0m\n");
         return;
     }
 
@@ -257,20 +257,20 @@ void yearlyexpenseReport(char *username){
                 minIncomeDetails = details;
             }
 
-            printf("                    Name: %s\n", details.name);
-            printf("                    Description: %s\n", details.description);
-            printf("                    Amount: %.2f\n", details.amount);
-            printf("                    Date: %s %d, %d\n", details.month, details.date, details.year);
+            printf("                    \033[1;32mName:\033[0m %s\n", details.name);
+            printf("                    \033[1;32mDescription:\033[0m %s\n", details.description);
+            printf("                    \033[1;32mAmount:\033[0m %.2f\n", details.amount);
+            printf("                    \033[1;32mDate:\033[0m %s %d, %d\n", details.month, details.date, details.year);
             printf("                    -----------------------------------------------------------\n");
         }
     }
     fclose(f);
 
     if (found) {
-        printf("                    The total yearly income for %s in %d is: %.2f\n", username, yearcheck, totalinc);
+        printf("                    The total yearly income for %s in %d is: \033[32m%.2f\033[0m\n", username, yearcheck, totalinc);
         printf("                    -----------------------------------------------------------\n");
-        printf("                    Maximum Income: %.2f (Name: %s, Description: %s, Date: %s %d, %d)\n", maxIncome, maxIncomeDetails.name, maxIncomeDetails.description, maxIncomeDetails.month, maxIncomeDetails.date, maxIncomeDetails.year);
-        printf("                    Minimum Income: %.2f (Name: %s, Description: %s, Date: %s %d, %d)\n", minIncome, minIncomeDetails.name, minIncomeDetails.description, minIncomeDetails.month, minIncomeDetails.date, minIncomeDetails.year);
+        printf("                    Maximum Income: \033[32m%.2f\033[0m (Name: %s, Description: %s, Date: %s %d, %d)\n", maxIncome, maxIncomeDetails.name, maxIncomeDetails.description, maxIncomeDetails.month, maxIncomeDetails.date, maxIncomeDetails.year);
+        printf("                    Minimum Income: \033[32m%.2f\033[0m (Name: %s, Description: %s, Date: %s %d, %d)\n", minIncome, minIncomeDetails.name, minIncomeDetails.description, minIncomeDetails.month, minIncomeDetails.date, minIncomeDetails.year);
         printf("                    -----------------------------------------------------------\n");
     } else {
         printf("                    No income found for user %s in %d\n", username, yearcheck);
@@ -280,7 +280,7 @@ void yearlyexpenseReport(char *username){
     // Expense report
     f = fopen("Expense_details.txt", "r");
     if (f == NULL) {
-        printf("                    Error opening file.\n");
+        printf("                    \033[31mError opening file.\033[0m\n");
         return;
     }
 
@@ -315,21 +315,21 @@ void yearlyexpenseReport(char *username){
                 minExpenseDetails = detail;
             }
 
-            printf("                    Name: %s\n", detail.name);
-            printf("                    Description: %s\n", detail.description);
-            printf("                    Category: %c\n", detail.category);
-            printf("                    Amount: %.2f\n", detail.amount);
-            printf("                    Date: %s %d, %d\n", detail.month, detail.date, detail.year);
+            printf("                    \033[1;31mName:\033[0m %s\n", detail.name);
+            printf("                    \033[1;31mDescription:\033[0m %s\n", detail.description);
+            printf("                    \033[1;31mCategory:\033[0m %c\n", detail.category);
+            printf("                    \033[1;31mAmount:\033[0m %.2f\n", detail.amount);
+            printf("                    \033[1;31mDate:\033[0m %s %d, %d\n", detail.month, detail.date, detail.year);
             printf("                    -----------------------------------------------------------\n");
         }
     }
     fclose(f);
 
     if (found) {
-        printf("                    The total yearly expense for %s in %d is: %.2f\n", username, yearcheck, totalexp);
+        printf("                    The total yearly expense for %s in %d is: \033[31m%.2f\033[0m\n", username, yearcheck, totalexp);
         printf("                    -----------------------------------------------------------\n");
-        printf("                    Maximum Expense: %.2f (Name: %s, Description: %s, Category: %c, Date: %s %d, %d)\n", maxExpense, maxExpenseDetails.name, maxExpenseDetails.description, maxExpenseDetails.category, maxExpenseDetails.month, maxExpenseDetails.date, maxExpenseDetails.year);
-        printf("                    Minimum Expense: %.2f (Name: %s, Description: %s, Category: %c, Date: %s %d, %d)\n", minExpense, minExpenseDetails.name, minExpenseDetails.description, minExpenseDetails.category, minExpenseDetails.month, minExpenseDetails.date, minExpenseDetails.year);
+        printf("                    Maximum Expense: \033[31m%.2f\033[m (Name: %s, Description: %s, Category: %c, Date: %s %d, %d)\n", maxExpense, maxExpenseDetails.name, maxExpenseDetails.description, maxExpenseDetails.category, maxExpenseDetails.month, maxExpenseDetails.date, maxExpenseDetails.year);
+        printf("                    Minimum Expense: \033[31m%.2f\033[m (Name: %s, Description: %s, Category: %c, Date: %s %d, %d)\n", minExpense, minExpenseDetails.name, minExpenseDetails.description, minExpenseDetails.category, minExpenseDetails.month, minExpenseDetails.date, minExpenseDetails.year);
         printf("                    -----------------------------------------------------------\n");
     } else {
         printf("                    No expenses found for user %s in %d\n", username, yearcheck);
@@ -337,8 +337,8 @@ void yearlyexpenseReport(char *username){
     }
 
     float money=0;
-    printf("                    Total Income : %.2f\n",totalinc);
-    printf("                    Total Expense : %.2f\n",totalexp);
+    printf("                    Total Income : \033[32m%.2f\n\033[0m",totalinc);
+    printf("                    Total Expense : \033[31m%.2f\n\033[0m",totalexp);
     money=totalinc-totalexp;
     if (money>=0)
     {

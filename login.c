@@ -3,25 +3,25 @@
 void registerUser(struct user_data *user) {
     FILE *f = fopen("credentials.txt", "a");
     if (f == NULL) {
-        printf("                    Error opening file for writing.\n");
+        printf("                    \033[31mError opening file for writing.\033[0m\n");
         return;
     }
 
-    printf("                    Enter a username: ");
+    printf("                    \033[36mEnter a username:\033[0m ");
     scanf("%s", user->username);
-    printf("                    Enter a password: ");
+    printf("                    \033[36mEnter a password:\033[0m ");
     scanf("%s", user->password);
 
     fprintf(f, "%s %s\n", user->username, user->password); // Store credentials in the file
     fclose(f);
 
-    printf("                    Registration successful!\n");
+    printf("                    \033[32mRegistration successful!\033[0m\n");
 }
 
 int loginUser(struct user_data *user) {
     FILE *f = fopen("credentials.txt", "r");
     if (f == NULL) {
-        printf("                    Error opening file for reading or no registered users.\n");
+        printf("                    \033[31mError opening file for reading or no registered users.\033[0m\n");
         return 0;
     }
 
@@ -29,9 +29,9 @@ int loginUser(struct user_data *user) {
     char storedPassword[50];
     int found = 0;
 
-    printf("                    Enter your username: ");
+    printf("                    \033[36mEnter your username:\033[0m ");
     scanf("%s", user->username);
-    printf("                    Enter your password: ");
+    printf("                    \033[36mEnter your password:\033[0m ");
     scanf("%s", user->password);
 
     while (fscanf(f, "%s %s", storedUsername, storedPassword) != EOF) {
@@ -45,10 +45,10 @@ int loginUser(struct user_data *user) {
     fclose(f);
 
     if (found) {
-        printf("                    Login successful!\n");
+        printf("                    \033[32mLogin successful!\033[0m\n");
         return 1;
     } else {
-        printf("                    Invalid username or password.\n");
+        printf("                    \033[31mInvalid username or password.\033[0m\n");
         return 0;
     }
 }

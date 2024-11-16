@@ -32,7 +32,7 @@ void addIncome(char *username) {
     struct user_income_details detail;
     FILE *f = fopen("Income_details.txt", "a");
     if (f == NULL) {
-        printf("                    Error opening file for writing.\n");
+        printf("                    \033[31mError opening file for writing.\033[0m\n");
         return;
     }
 
@@ -43,7 +43,7 @@ void addIncome(char *username) {
     printf("                    Enter the amount: ");
     scanf("%f", &detail.amount);
 
-    printf("                    Would you like to:\n                    1. Enter the date manually\n                    2. Use the current date\n                   Enter your choice : ");
+    printf("                    Would you like to:\n                    1. Enter the date manually\n                    2. Use the current date\n                     Enter your choice : ");
     int dateChoice;
     scanf("%d", &dateChoice);
 
@@ -60,7 +60,7 @@ void addIncome(char *username) {
         getCurrentDatei(detail.month, &detail.date, &detail.year);
         printf("                    Using current date: %s %d, %d\n", detail.month, detail.date, detail.year);
     } else {
-        printf("                    Invalid choice. Please try again.\n");
+        printf("                    \033[31mInvalid choice. Please try again.\033[0m\n");
         return;
     }
 
@@ -70,7 +70,7 @@ void addIncome(char *username) {
             detail.amount, detail.month, detail.date, detail.year);
 
     fclose(f);
-    printf("                    Income recorded successfully.\n");
+    printf("                    \033[32mIncome recorded successfully.\033[0m\n");
 
     
 }
@@ -102,14 +102,14 @@ void deleteIncome(char *username) {
             getCurrentDatei(month, &date, &year);
             printf("                    Using current date: %s %d, %d\n", month, date, year);
         } else {
-            printf("                    Invalid choice. Please try again.\n");
+            printf("                    \033[31mInvalid choice. Please try again.\033[0m\n");
             return;
         }
 
         FILE *f = fopen("Income_details.txt", "r");
         FILE *temp = fopen("Temp_income_details.txt", "w");
         if (f == NULL || temp == NULL) {
-            printf("                    Error opening file.\n");
+            printf("                    \033[31mError opening file.\033[0m\n");
             return;
         }
 
@@ -138,10 +138,10 @@ void deleteIncome(char *username) {
         if (deleted) {
             remove("Income_details.txt");
             rename("Temp_income_details.txt", "Income_details.txt");
-            printf("                    Income deleted successfully.\n");
+            printf("                    \033[32mIncome deleted successfully.\033[0m\n");
         } else {
             remove("Temp_income_details.txt");
-            printf("                    No matching income found for deletion.\n");
+            printf("                    \033[31mNo matching income found for deletion.\033[0m\n");
         }
 
         
@@ -157,7 +157,7 @@ void editIncome(char *username) {
         printf("                    Enter the name of the Income to edit: ");
         scanf(" %[^\n]s", incomeName);
 
-        printf("                    Would you like to:\n                    1. Enter the date manually\n                    2. Use the current date\n                   Enter your choise :");
+        printf("                    Would you like to:\n                    1. Enter the date manually\n                    2. Use the current date\n                    Enter your choise :");
         int dateChoice;
         scanf("%d", &dateChoice);
 
@@ -174,7 +174,7 @@ void editIncome(char *username) {
             getCurrentDatei(month, &date, &year);
             printf("                    Using current date: %s %d, %d\n", month, date, year);
         } else {
-            printf("                    Invalid choice. Please try again.\n");
+            printf("                    \033[31mInvalid choice. Please try again.\033[0m\n");
             return;
         }
 
@@ -195,7 +195,7 @@ void editIncome(char *username) {
         FILE *f = fopen("Income_details.txt", "r");
         FILE *temp = fopen("Temp_income_details.txt", "w");
         if (f == NULL || temp == NULL) {
-            printf("                    Error opening file.\n");
+            printf("                    \033[31mError opening file.\033[0m\n");
             return;
         }
 
@@ -224,9 +224,9 @@ void editIncome(char *username) {
             fprintf(temp, "%s, %s, %s, %.2f, %s, %d, %d\n",
                     username, data.name, data.description,
                     data.amount, data.month, data.date, data.year);
-            printf("                    Income edited successfully.\n");
+            printf("                    \033[32mIncome edited successfully.\033[0m\n");
         } else {
-            printf("                    No matching income found for editing.\n");
+            printf("                    \033[31mNo matching income found for editing.\033[0m\n");
         }
 
         fclose(temp);
@@ -240,7 +240,7 @@ void viewIncome(char *username) {
     
     FILE *f = fopen("Income_details.txt", "r");
     if (f == NULL) {
-        printf("                    Error opening file.\n");
+        printf("                    \033[31mError opening file.\033[0m\n");
         return;
     }
 
@@ -256,7 +256,7 @@ void viewIncome(char *username) {
         if (strcmp(username, fileUsername) == 0) {
             printf("                    Income Name: %s\n", details.name);
             printf("                    Description: %s\n", details.description);
-            printf("                    Amount: %.2f\n", details.amount);
+            printf("                    Amount: \033[32m%.2f\033[0m\n", details.amount);
             printf("                    Date: %s %d, %d\n", details.month, details.date, details.year);
             printf("                    -----------------------------------------------------------\n");
             found = 1;
@@ -264,7 +264,7 @@ void viewIncome(char *username) {
     }
 
     if (!found) {
-        printf("                    No income records found.\n");
+        printf("                    \033[31mNo income records found.\033[0m\n");
         printf("                    -----------------------------------------------------------\n");
     }
     
@@ -279,16 +279,32 @@ void monthlyIncome(char *username) {
     
         char monthcheck[10];
         int yearcheck;
+        int date;
         float totalinc = 0;
+        printf("                    Would you like to:\n                    1. Enter the date manually\n                    2. Use the current date\n                    Enter your choice : ");
+        int dateChoice;
+        scanf("%d", &dateChoice);
 
-        printf("                    Enter the month to view your income statement (e.g., January): ");
-        scanf("%s", monthcheck);
-        printf("                    Enter the year to check your monthly income statement (e.g., 2024): ");
-        scanf("%d", &yearcheck);
+        if (dateChoice == 1) {
+            // Manual date input
+            printf("                    Enter the month (e.g., January): ");
+            scanf("%s", monthcheck);
+            
+            printf("                    Enter the year (e.g., 2023): ");
+            scanf("%d", &yearcheck);
+        } else if (dateChoice == 2) {
+            // Get current date automatically
+            getCurrentDatei(monthcheck, &date, &yearcheck);
+            printf("                    Using current Month: %s %d\n", monthcheck, yearcheck);
+        } else {
+            printf("                    \033[31mInvalid choice. Please try again.\033[0m\n");
+            return;
+        }
+        
 
         FILE *f = fopen("Income_details.txt", "r");
         if (f == NULL) {
-            printf("                    Error opening file.\n");
+            printf("                    \033[31mError opening file.\033[0m\n");
             return;
         }
 
@@ -308,7 +324,7 @@ void monthlyIncome(char *username) {
                 totalinc += details.amount;
                 printf("                    Name: %s\n", details.name);
                 printf("                    Description: %s\n", details.description);
-                printf("                    Amount: %.2f\n", details.amount);
+                printf("                    Amount: \033[32m%.2f\033[0m\n", details.amount);
                 printf("                    Date: %s %d, %d\n", details.month, details.date, details.year);
                 printf("                    -----------------------------------------------------------\n");
             }
@@ -316,12 +332,10 @@ void monthlyIncome(char *username) {
 
         fclose(f);
 
-        if (found != 1) {
-            printf("                    No Record found\n");
-            printf("                    -----------------------------------------------------------\n");
+        if (found) {
+            printf("                    The total monthly Income for %s in %s %d is: \033[32m%.2f\033[0m\n", username, monthcheck, yearcheck, totalinc);
         } else {
-            printf("                    Total Monthly Income: %.2f\n", totalinc);
-            printf("                    -----------------------------------------------------------\n");
+            printf("                    No Income found for user %s in %s %d\n", username, monthcheck, yearcheck);
         }
 
  
@@ -330,14 +344,32 @@ void monthlyIncome(char *username) {
 void yearlyIncome(char *username) {
     
         int yearcheck;
+        char monthcheck[10];
+        int date;
         float totalinc = 0;
 
-        printf("                    Enter the year to check your yearly income statement (e.g., 2024): ");
-        scanf("%d", &yearcheck);
+        printf("                    Would you like to:\n                    1. Enter the date manually\n                    2. Use the current date\n                    Enter your choice : ");
+        int dateChoice;
+        scanf("%d", &dateChoice);
+
+        if (dateChoice == 1) {
+            // Manual date input
+            
+            
+            printf("                    Enter the year (e.g., 2023): ");
+            scanf("%d", &yearcheck);
+        } else if (dateChoice == 2) {
+            // Get current date automatically
+            getCurrentDatei(monthcheck, &date, &yearcheck);
+            printf("                    Using current Year: %d\n", yearcheck);
+        } else {
+            printf("                    \033[31mInvalid choice. Please try again.\033[0m\n");
+            return;
+        }
 
         FILE *f = fopen("Income_details.txt", "r");
         if (f == NULL) {
-            printf("                    Error opening file.\n");
+            printf("                    \033[31mError opening file.\033[0m\n");
             return;
         }
 
@@ -365,66 +397,13 @@ void yearlyIncome(char *username) {
 
         fclose(f);
 
-        if (found != 1) {
-            printf("                    No Record found\n");
-            printf("                    -----------------------------------------------------------\n");
+        if (found) {
+            printf("                    The total Yearly Income for %s in %d is: \033[32m%.2f\033[0m\n", username, yearcheck, totalinc);
         } else {
-            printf("                    Total Yearly Income: %.2f\n", totalinc);
-            printf("                    -----------------------------------------------------------\n");
+            printf("                    No expenses found for user %s in %d\n", username, yearcheck);
         }
 
         
 }
 
 
-// int main() {
-//     // Example usage
-//     char username[50];
-//     printf("Enter your username: ");
-//     scanf("%s", username);
-
-    
-//     int option;
-
-//     do {
-//         printf("\nMenu:\n");
-//         printf("1. Add Income\n");
-//         printf("2. Delete Income\n");
-//         printf("3. Edit Income\n");
-//         printf("4. View Income\n");
-//         printf("5. View monthly Income statement\n");
-//         printf("6. View yearly Income statement\n");
-//         printf("0. Exit\n");
-//         printf("Enter your choice: ");
-//         scanf("%d", &option);
-
-//         switch (option) {
-//             case 1:
-//                 addIncome(username);
-//                 break;
-//             case 2:
-//                 deleteIncome(username);
-//                 break;
-//             case 3:
-//                 editIncome(username);
-//                 break;
-//             case 4:
-//                 viewIncome(username);
-//                 break;
-//             case 5:
-//                 monthlyIncome(username);
-//                 break;
-//             case 6:
-//                 yearlyIncome(username);
-//                 break;
-//             case 0:
-//                 printf("Exiting...\n");
-//                 break;
-//             default:
-//                 printf("Invalid choice. Please try again.\n");
-//                 break;
-//         }
-//     } while (option != 0);
-
-//     return 0;
-// }

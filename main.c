@@ -8,7 +8,7 @@
 
 void banner(){
     printf("                                                               =========================================================================                   \n");
-    printf("                                                               ||                         \033[33m$_$  WalletWhiz  $_$\033[0m                         ||                   \n");
+    printf("                                                               ||                         \033[33m$_$  WalletWhiz  $_$\033[0m                        ||                   \n");
     printf("                                                               ||---------------------------------------------------------------------||                   \n");
     printf("                                                               ||                   \033[32mWelcome to Smart Money Tracking!\033[0m                  ||                   \n");
     printf("                                                               =========================================================================                   \n");
@@ -21,10 +21,10 @@ int main() {
     struct user_data user;
     system("clear");
     banner();
-    printf("                    1. Register\n");
-    printf("                    2. Login\n");
-    printf("                    0. Exit\n");
-    printf("                    Enter your choice: ");
+    printf("                    \033[35m1. Register\033[0m\n");
+    printf("                    \033[35m2. Login\033[0m\n");
+    printf("                    \033[35m0. Exit\033[0m\n");
+    printf("                    \033[35mEnter your choice:\033[0m ");
     scanf("%d", &choice);
 
     switch (choice) {
@@ -32,7 +32,7 @@ int main() {
             system("clear");
             banner();
             registerUser(&user);
-            printf("                    Login to get started.\n");
+            printf("                    \033[34mLogin to get started.\033[0m\n");
         case 2:
         int flag=0;
         system("clear");
@@ -48,23 +48,23 @@ int main() {
                 
                 system("clear");
                 banner();
-                printf("                    1. Add Expense\n");
-                printf("                    2. Edit Expense\n");
-                printf("                    3. Delete Expense\n");
-                printf("                    4. View all Expense\n");
-                printf("                    5. View monthly Expense\n");
-                printf("                    6. View yearly Expense\n");
-                printf("                    7. View Expense based on Category\n");
-                printf("                    8. Add Income\n");
-                printf("                    9. Edit Income\n");
-                printf("                    10. Delete Income\n");
-                printf("                    11. View all Income\n");
-                printf("                    12. View monthly Income\n");
-                printf("                    13. View yearly Income\n");
-                printf("                    14. View monthly Report\n");
-                printf("                    15. View yearly Report\n");
-                printf("                    0. Exit\n");
-                printf("                    Enter your Choioce : ");
+                printf("                    \033[36m1. Add Expense\033[0m\n");
+                printf("                    \033[36m2. Edit Expense\033[0m\n");
+                printf("                    \033[36m3. Delete Expense\033[0m\n");
+                printf("                    \033[36m4. View all Expense\033[0m\n");
+                printf("                    \033[36m5. View monthly Expense\033[0m\n");
+                printf("                    \033[36m6. View yearly Expense\033[0m\n");
+                printf("                    \033[36m7. View Expense based on Category\033[0m\n");
+                printf("                    \033[36m8. Add Income\033[0m\n");
+                printf("                    \033[36m9. Edit Income\033[0m\n");
+                printf("                    \033[36m10. Delete Income\033[0m\n");
+                printf("                    \033[36m11. View all Income\033[0m\n");
+                printf("                    \033[36m12. View monthly Income\033[0m\n");
+                printf("                    \033[36m13. View yearly Income\033[0m\n");
+                printf("                    \033[36m14. View monthly Report\033[0m\n");
+                printf("                    \033[36m15. View yearly Report\033[0m\n");
+                printf("                    \033[36m0. Exit\033[0m\n");
+                printf("                    \033[36mEnter your Choioce :\033[0m ");
                 int pchoice=0;
                 scanf("%d",&pchoice);
                 switch (pchoice)
@@ -77,10 +77,10 @@ int main() {
                     {
                         enterExpense(user.username);
 
-                        printf("\n                    1. Run again\n");
-                        printf("                    0. Exit\n");
+                        printf("\n                    \033[32m1. Run again\033[0m\n");
+                        printf("                    \033[31m0. Exit\033[0m\n");
                         int choice=0;
-                        printf("                    Enter your choice : ");
+                        printf("                    \033[36mEnter your choice :\033[0m ");
                         scanf("%d",&choice);
                         
                         switch (choice)
@@ -104,10 +104,10 @@ int main() {
                     {
                         editExpense(user.username);
 
-                        printf("\n                    1. Run again\n");
-                        printf("                    0. Exit\n");
+                        printf("\n                    \033[32m1. Run again\033[0m\n");
+                        printf("                    \033[31m0. Exit\033[0m\n");
                         int choice=0;
-                        printf("                    Enter your choice : ");
+                        printf("                    \033[36mEnter your choice :\033[0m ");
                         scanf("%d",&choice);
                         
                         switch (choice)
@@ -131,10 +131,10 @@ int main() {
                     {
                         deleteExpense(user.username);
 
-                        printf("\n                    1. Run again\n");
-                        printf("                    0. Exit\n");
+                        printf("\n                    \033[32m1. Run again\033[0m\n");
+                        printf("                    \033[31m0. Exit\033[0m\n");
                         int choice=0;
-                        printf("                    Enter your choice : ");
+                        printf("                    \033[36mEnter your choice :\033[0m ");
                         scanf("%d",&choice);
                         
                         switch (choice)
@@ -151,84 +151,43 @@ int main() {
                     mflag=1;
                     break;
                 case 4:
-                    int f4=0;
+                    
                     system("clear");
                     banner();
-                    do
-                    {
+                   
                         
-                        readExpense(user.username);
-                        printf("\n                    1. Run again\n");
-                        printf("                    0. Exit\n");
-                        int choice=0;
-                        printf("                    Enter your choice : ");
-                        scanf("%d",&choice);
+                    readExpense(user.username);
+                    printf("\nPress Enter to continue...");
+                    getchar(); // Wait for user input to continue
+                    getchar(); // Handle newline from previous inpu
                         
-                        switch (choice)
-                        {
-                        case 1:
-                            f4=1;
-                            break;
-                        case 0:
-                            f4=0;
-                            break;
-                        
-                        }
-                    } while (f4==1);
                     mflag=1;
                     break;
                 case 5:
-                    int f5=0;
+                    
                     system("clear");
                     banner();
-                    do
-                    {
-                        totalmonthlyExpense(user.username);
+                    
+                    totalmonthlyExpense(user.username);
+                    printf("\nPress Enter to continue...");
+                    getchar(); // Wait for user input to continue
+                    getchar(); // Handle newline from previous inpu
 
-                        printf("\n                    1. Run again\n");
-                        printf("                    0. Exit\n");
-                        int choice=0;
-                        printf("                    Enter your choice : ");
-                        scanf("%d",&choice);
                         
-                        switch (choice)
-                        {
-                        case 1:
-                            f5=1;
-                            break;
-                        case 0:
-                            f5=0;
-                            break;
-                        
-                        }
-                    } while (f5==1);
                     mflag=1;
                     break;
                 case 6:
-                    int f6=0;
+                    
                     system("clear");
                     banner();
-                    do
-                    {
-                        totalyearlyExpense(user.username);
-
-                        printf("\n                    1. Run again\n");
-                        printf("                    0. Exit\n");
-                        int choice=0;
-                        printf("                    Enter your choice : ");
-                        scanf("%d",&choice);
+                    
+                    totalyearlyExpense(user.username);
+                    printf("\nPress Enter to continue...");
+                    getchar(); // Wait for user input to continue
+                    getchar(); // Handle newline from previous input
                         
-                        switch (choice)
-                        {
-                        case 1:
-                            f6=1;
-                            break;
-                        case 0:
-                            f6=0;
-                            break;
                         
-                        }
-                    } while (f6==1);
+                        
                     mflag=1;
                     break;
                 case 7:
@@ -239,10 +198,10 @@ int main() {
                     {
                         
                         expenseOnCategory(user.username);
-                        printf("\n                    1. Run again\n");
-                        printf("                    0. Exit\n");
+                        printf("\n                    \033[32m1. Run again\033[0m\n");
+                        printf("                    \033[31m0. Exit\033[0m\n");
                         int choice=0;
-                        printf("                    Enter your choice : ");
+                        printf("                    \033[36mEnter your choice :\033[0m ");
                         scanf("%d",&choice);
                         
                         switch (choice)
@@ -266,10 +225,10 @@ int main() {
                     {
                         
                         addIncome(user.username);
-                        printf("\n                    1. Run again\n");
-                        printf("                    0. Exit\n");
+                        printf("\n                    \033[32m1. Run again\033[0m\n");
+                        printf("                    \033[31m0. Exit\033[0m\n");
                         int choice=0;
-                        printf("                    Enter your choice : ");
+                        printf("                    \033[36mEnter your choice :\033[0m ");
                         scanf("%d",&choice);
                         
                         switch (choice)
@@ -293,10 +252,10 @@ int main() {
                     {
                         editIncome(user.username);
 
-                        printf("\n                    1. Run again\n");
-                        printf("                    0. Exit\n");
+                        printf("\n                    \033[32m1. Run again\033[0m\n");
+                        printf("                    \033[31m0. Exit\033[0m\n");
                         int choice=0;
-                        printf("                    Enter your choice : ");
+                        printf("                    \033[36mEnter your choice :\033[0m ");
                         scanf("%d",&choice);
                         
                         switch (choice)
@@ -320,10 +279,10 @@ int main() {
                     {
                         deleteIncome(user.username);
 
-                        printf("\n                    1. Run again\n");
-                        printf("                    0. Exit\n");
+                        printf("\n                    \033[32m1. Run again\033[0m\n");
+                        printf("                    \033[31m0. Exit\033[0m\n");
                         int choice=0;
-                        printf("                    Enter your choice : ");
+                        printf("                    \033[36mEnter your choice :\033[0m ");
                         scanf("%d",&choice);
                         
                         switch (choice)
@@ -340,138 +299,65 @@ int main() {
                     mflag=1;
                     break;
                 case 11:
-                    int f11=0;
+                    
                     system("clear");
                     banner();
-                    do
-                    {
-                        viewIncome(user.username);
-
-                        printf("\n                    1. Run again\n");
-                        printf("                    0. Exit\n");
-                        int choice=0;
-                        printf("                    Enter your choice : ");
-                        scanf("%d",&choice);
+                    
+                    viewIncome(user.username);
+                    printf("\nPress Enter to continue...");
+                    getchar(); // Wait for user input to continue
+                    getchar(); // Handle newline from previous inpu
                         
-                        switch (choice)
-                        {
-                        case 1:
-                            f11=1;
-                            break;
-                        case 0:
-                            f11=0;
-                            break;
-                        
-                        }
-                    } while (f11==1);
                     mflag=1;
                     break;
                 case 12:
-                    int f12=0;
+                    
                     system("clear");
                     banner();
-                    do
-                    {
-                        monthlyIncome(user.username);
-
-                        printf("\n                    1. Run again\n");
-                        printf("                    0. Exit\n");
-                        int choice=0;
-                        printf("                    Enter your choice : ");
-                        scanf("%d",&choice);
+                   
+                    monthlyIncome(user.username);
+                    printf("\nPress Enter to continue...");
+                    getchar(); // Wait for user input to continue
+                    getchar(); // Handle newline from previous inpu
                         
-                        switch (choice)
-                        {
-                        case 1:
-                            f12=1;
-                            break;
-                        case 0:
-                            f12=0;
-                            break;
-                        
-                        }
-                    } while (f12==1);
                     mflag=1;
                     break;
                 case 13:
-                    int f13=0;
+                    
                     system("clear");
                     banner();
-                    do
-                    {
-                        yearlyIncome(user.username);
-
-                        printf("\n                    1. Run again\n");
-                        printf("                    0. Exit\n");
-                        int choice=0;
-                        printf("                    Enter your choice : ");
-                        scanf("%d",&choice);
+                    
+                    yearlyIncome(user.username);
+                    printf("\nPress Enter to continue...");
+                    getchar(); // Wait for user input to continue
+                    getchar(); // Handle newline from previous inpu
                         
-                        switch (choice)
-                        {
-                        case 1:
-                            f13=1;
-                            break;
-                        case 0:
-                            f13=0;
-                            break;
-                        
-                        }
-                    } while (f13==1);
                     mflag=1;
                     break;
                 case 14:
-                    int f14=0;
+                    
                     system("clear");
                     banner();
-                    do
-                    {
+                    
                         
-                        monthlyexpenseReport(user.username);
-                        printf("\n                    1. Run again\n");
-                        printf("                    0. Exit\n");
-                        int choice=0;
-                        printf("                    Enter your choice : ");
-                        scanf("%d",&choice);
-                        
-                        switch (choice)
-                        {
-                        case 1:
-                            f14=1;
-                            break;
-                        case 0:
-                            f14=0;
-                            break;
-                        
-                        }
-                    } while (f14==1);
+                    monthlyexpenseReport(user.username);
+                    printf("\nPress Enter to continue...");
+                    getchar(); // Wait for user input to continue
+                    getchar(); // Handle newline from previous inpu
+
                     mflag=1;
                     break;
                 case 15:
-                    int f15=0;
+                    
                     system("clear");
                     banner();
-                    do
-                    {
+                    
                         
-                        yearlyexpenseReport(user.username);
-                        printf("\n                    1. Run again\n");
-                        printf("                    0. Exit\n");
-                        int choice=0;
-                        printf("                    Enter your choice : ");
-                        scanf("%d",&choice);
-                        
-                        switch (choice)
-                        {
-                        case 1:
-                            f15=1;
-                            break;
-                        case 0:
-                            f15=0;
-                            break;
-                        
-                        }
-                    } while (f15==1);
+                    yearlyexpenseReport(user.username);
+                    printf("\nPress Enter to continue...");
+                    getchar(); // Wait for user input to continue
+                    getchar(); // Handle newline from previous inpu
+
                     mflag=1;
                     break;
                 
@@ -490,7 +376,7 @@ int main() {
                 // main block
             }
             else{
-                printf("                    1. Try Again\n                  0. Exit\n               Enter your choice : ");
+                printf("                    \033[32m1. Try Again\033[0m\n                    \033[31m0. Exit\033[0m\n                    \033[36mEnter your choice :\033[0m ");
                 int choice=0;
                 scanf("%d",&choice);
                 switch (choice)
@@ -517,7 +403,7 @@ int main() {
             break;
 
         default:
-            printf("                    Invalid choice.\n");
+            printf("                    \033[31mInvalid choice.\033[0m\n");
             break;
     }
 
