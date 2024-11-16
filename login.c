@@ -18,7 +18,7 @@ void registerUser(struct user_data *user) {
     printf("Registration successful!\n");
 }
 
-void loginUser(struct user_data *user) {
+int loginUser(struct user_data *user) {
     FILE *f = fopen("credentials.txt", "r");
     if (f == NULL) {
         printf("Error opening file for reading or no registered users.\n");
@@ -37,6 +37,7 @@ void loginUser(struct user_data *user) {
     while (fscanf(f, "%s %s", storedUsername, storedPassword) != EOF) {
         if (strcmp(user->username, storedUsername) == 0 && strcmp(user->password, storedPassword) == 0) {
             found = 1;
+
             break;
         }
     }
@@ -45,7 +46,9 @@ void loginUser(struct user_data *user) {
 
     if (found) {
         printf("Login successful!\n");
+        return 1;
     } else {
         printf("Invalid username or password.\n");
+        return 0;
     }
 }
