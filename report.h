@@ -7,7 +7,7 @@
 #include <float.h>
 
 // Structure definitions
-struct user_income_details {
+struct user_income_details1 {
     char name[50];
     char description[100];
     float amount;
@@ -16,7 +16,7 @@ struct user_income_details {
     int year;
 };
 
-struct user_expense_details {
+struct user_expense_details1 {
     char name[50];
     float amount;
     char description[100];

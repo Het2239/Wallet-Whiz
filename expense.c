@@ -33,39 +33,39 @@ void enterExpense(char *username) {
 
         FILE *f = fopen("Expense_details.txt", "a");
         if (f == NULL) {
-            printf("Error opening file for writing.\n");
+            printf("                    Error opening file for writing.\n");
             return;
         }
 
         struct user_expense_details details;
-        printf("Enter the name of the expense: ");
+        printf("                    Enter the name of the expense: ");
         scanf(" %[^\n]s", details.name); // Reads input with spaces
-        printf("Enter a description for the expense: ");
+        printf("                    Enter a description for the expense: ");
         scanf(" %[^\n]s", details.description); // Reads input with spaces
-        printf("Enter the category (U, H, S, P, O): ");
+        printf("                    Enter the category (U, H, S, P, O): ");
         scanf(" %c", &details.category); // Ensure leading space to read a single character correctly
-        printf("Enter the amount: ");
+        printf("                    Enter the amount: ");
         scanf("%f", &details.amount);
 
-        printf("Would you like to:\n1. Enter the date manually\n2. Use the current date\nEnter your choice : ");
+        printf("                    Would you like to:\n                    1. Enter the date manually\n                    2. Use the current date\n                   Enter your choice : ");
         int dateChoice;
         scanf("%d", &dateChoice);
 
         if (dateChoice == 1) {
             // Manual date input
-            printf("Enter the month (e.g., January): ");
+            printf("                    Enter the month (e.g., January): ");
             scanf("%s", details.month);
-            printf("Enter the date (e.g., 15): ");
+            printf("                    Enter the date (e.g., 15): ");
             scanf("%d", &details.date);
-            printf("Enter the year (e.g., 2023): ");
+            printf("                    Enter the year (e.g., 2023): ");
             scanf("%d", &details.year);
         } else if (dateChoice == 2) {
             // Get current date automatically
             getCurrentDate(details.month, &details.date, &details.year);
-            printf("Using current date: %s %d, %d\n", details.month, details.date, details.year);
+            printf("                    Using current date: %s %d, %d\n", details.month, details.date, details.year);
         } else {
-            printf("Invalid choice. Please try again.\n");
-            continue;
+            printf("                    Invalid choice. Please try again.\n");
+            return;
         }
 
         // Write the details to the file in comma and space separated format
@@ -74,7 +74,7 @@ void enterExpense(char *username) {
                 details.amount, details.month, details.date, details.year);
 
         fclose(f);
-        printf("Expense recorded successfully.\n");
+        printf("                    Expense recorded successfully.\n");
 
        
 }
@@ -84,7 +84,7 @@ void readExpense(char *username) {
 
         FILE *f = fopen("Expense_details.txt", "r");
         if (f == NULL) {
-            printf("Error opening file for reading or file does not exist.\n");
+            printf("                    Error opening file for reading or file does not exist.\n");
             return;
         }
 
@@ -92,8 +92,8 @@ void readExpense(char *username) {
         struct user_expense_details details;
         int found = 0;
 
-        printf("\nExpenses for user: %s\n", username);
-        printf("-----------------------------------------------------------\n");
+        printf("\n                    Expenses for user: %s\n", username);
+        printf("                    -----------------------------------------------------------\n");
 
         // Reading data with comma and space separation
         while (fscanf(f, "%[^,], %49[^,], %99[^,], %c, %f, %9[^,], %d, %d\n",
@@ -101,17 +101,17 @@ void readExpense(char *username) {
                       &details.amount, details.month, &details.date, &details.year) != EOF) {
             if (strcmp(username, fileUsername) == 0) {
                 found = 1;
-                printf("Name: %s\n", details.name);
-                printf("Description: %s\n", details.description);
-                printf("Category: %c\n", details.category);
-                printf("Amount: %.2f\n", details.amount);
-                printf("Date: %s %d, %d\n", details.month, details.date, details.year);
-                printf("-----------------------------------------------------------\n");
+                printf("                    Name: %s\n", details.name);
+                printf("                    Description: %s\n", details.description);
+                printf("                    Category: %c\n", details.category);
+                printf("                    Amount: %.2f\n", details.amount);
+                printf("                    Date: %s %d, %d\n", details.month, details.date, details.year);
+                printf("                    -----------------------------------------------------------\n");
             }
         }
 
         if (!found) {
-            printf("No expenses found for user: %s\n", username);
+            printf("                    No expenses found for user: %s\n", username);
         }
 
         fclose(f);
@@ -127,13 +127,13 @@ void deleteExpense(char *username) {
         int date, year;
 
         // Take input for expense name, month, date, and year to identify which record to delete
-        printf("Enter the name of the expense to delete: ");
+        printf("                    Enter the name of the expense to delete: ");
         scanf(" %[^\n]s", expenseName);
-        printf("Enter the month of the expense to delete (e.g., January): ");
+        printf("                    Enter the month of the expense to delete (e.g., January): ");
         scanf("%s", month);
-        printf("Enter the date of the expense to delete (e.g., 15): ");
+        printf("                    Enter the date of the expense to delete (e.g., 15): ");
         scanf("%d", &date);
-        printf("Enter the year of the expense to delete (e.g., 2024): ");
+        printf("                    Enter the year of the expense to delete (e.g., 2024): ");
         scanf("%d", &year);
 
         FILE *f = fopen("Expense_details.txt", "r");
@@ -171,10 +171,10 @@ void deleteExpense(char *username) {
         if (deleted) {
             remove("Expense_details.txt");
             rename("Temp_expense_details.txt", "Expense_details.txt");
-            printf("Expense deleted successfully.\n");
+            printf("                    Expense deleted successfully.\n");
         } else {
             remove("Temp_expense_details.txt");
-            printf("No matching expense found for deletion.\n");
+            printf("                    No matching expense found for deletion.\n");
         }
 
         
@@ -188,48 +188,48 @@ void editExpense(char *username) {
         int date, year;
 
         // Take input for expense name, month, date, and year to identify which record to delete
-        printf("Enter the name of the expense to edit: ");
+        printf("                    Enter the name of the expense to edit: ");
         scanf(" %[^\n]s", expenseName);
-        printf("Enter the month of the expense to edit (e.g., January): ");
+        printf("                    Enter the month of the expense to edit (e.g., January): ");
         scanf("%s", month);
-        printf("Enter the date of the expense to edit (e.g., 15): ");
+        printf("                    Enter the date of the expense to edit (e.g., 15): ");
         scanf("%d", &date);
-        printf("Enter the year of the expense to edit (e.g., 2024): ");
+        printf("                    Enter the year of the expense to edit (e.g., 2024): ");
         scanf("%d", &year);
 
         struct user_expense_details data;
-        printf("Enter the new name of the Expense: ");
+        printf("                    Enter the new name of the Expense: ");
         scanf(" %[^\n]s", data.name);
-        printf("Enter a new description for the Expense: ");
+        printf("                    Enter a new description for the Expense: ");
         scanf(" %[^\n]s", data.description); // Reads input with spaces
-        printf("Enter the new amount: ");
+        printf("                    Enter the new amount: ");
         scanf("%f", &data.amount);
 
-        printf("Would you like to:\n1. Enter the new date manually\n2. Use the current date\nEnter your choice : ");
+        printf("                    Would you like to:\n                    1. Enter the new date manually\n                    2. Use the current date\n                   Enter your choice : ");
         int dateChoice;
         scanf("%d", &dateChoice);
 
         if (dateChoice == 1) {
             // Manual date input
-            printf("Enter the month (e.g., January): ");
+            printf("                    Enter the month (e.g., January): ");
             scanf("%s", data.month);
-            printf("Enter the date (e.g., 15): ");
+            printf("                    Enter the date (e.g., 15): ");
             scanf("%d", &data.date);
-            printf("Enter the year (e.g., 2023): ");
+            printf("                    Enter the year (e.g., 2023): ");
             scanf("%d", &data.year);
         } else if (dateChoice == 2) {
             // Get current date automatically
             getCurrentDate(data.month, &data.date, &data.year);
-            printf("Using current date: %s %d, %d\n", data.month, data.date, data.year);
+            printf("                    Using current date: %s %d, %d\n", data.month, data.date, data.year);
         } else {
-            printf("Invalid choice. Please try again.\n");
-            continue;
+            printf("                    Invalid choice. Please try again.\n");
+            return;
         }
 
         FILE *f = fopen("Expense_details.txt", "r");
         FILE *temp = fopen("Temp_expense_details.txt", "w");
         if (f == NULL || temp == NULL) {
-            printf("Error opening file.\n");
+            printf("                    Error opening file.\n");
             return;
         }
 
@@ -264,10 +264,10 @@ void editExpense(char *username) {
             fclose(temp);
             remove("Expense_details.txt");
             rename("Temp_expense_details.txt", "Expense_details.txt");
-            printf("Expense Edited successfully.\n");
+            printf("                    Expense Edited successfully.\n");
         } else {
             remove("Temp_expense_details.txt");
-            printf("No matching expense found to edit.\n");
+            printf("                    No matching expense found to edit.\n");
         }
 
         
@@ -283,7 +283,7 @@ void expenseOnCategory(char *username) {
 
         FILE *f = fopen("Expense_details.txt", "r");
         if (f == NULL) {
-            printf("Error opening file.\n");
+            printf("                    Error opening file.\n");
             return;
         }
 
@@ -291,8 +291,8 @@ void expenseOnCategory(char *username) {
         struct user_expense_details details;
         int found = 0;
 
-        printf("\nExpenses for user: %s\n", username);
-        printf("-----------------------------------------------------------\n");
+        printf("\n                    Expenses for user: %s\n", username);
+        printf("                    -----------------------------------------------------------\n");
 
         // Reading data with comma and space separation
         while (fscanf(f, "%[^,], %49[^,], %99[^,], %c, %f, %9[^,], %d, %d\n",
@@ -300,17 +300,17 @@ void expenseOnCategory(char *username) {
                       &details.amount, details.month, &details.date, &details.year) != EOF) {
             if (strcmp(username, fileUsername) == 0 && cat == details.category) {
                 found = 1;
-                printf("Name: %s\n", details.name);
-                printf("Description: %s\n", details.description);
-                printf("Category: %c\n", details.category);
-                printf("Amount: %.2f\n", details.amount);
-                printf("Date: %s %d, %d\n", details.month, details.date, details.year);
-                printf("-----------------------------------------------------------\n");
+                printf("                    Name: %s\n", details.name);
+                printf("                    Description: %s\n", details.description);
+                printf("                    Category: %c\n", details.category);
+                printf("                    Amount: %.2f\n", details.amount);
+                printf("                    Date: %s %d, %d\n", details.month, details.date, details.year);
+                printf("                    -----------------------------------------------------------\n");
             }
         }
 
         if (!found) {
-            printf("No expenses found for category %c for user: %s\n", cat, username);
+            printf("                    No expenses found for category %c for user: %s\n", cat, username);
         }
 
         fclose(f);
@@ -325,14 +325,14 @@ void totalmonthlyExpense(char *username) {
         int yearcheck;
         float totalexp = 0;
 
-        printf("Enter the month for which you want to see the total expense (e.g., January): ");
+        printf("                    Enter the month for which you want to see the total expense (e.g., January): ");
         scanf("%s", monthcheck);
-        printf("Enter the year for which you want to see the total expense (e.g., 2023): ");
+        printf("                    Enter the year for which you want to see the total expense (e.g., 2023): ");
         scanf("%d", &yearcheck);
 
         FILE *f = fopen("Expense_details.txt", "r");
         if (f == NULL) {
-            printf("Error opening file.\n");
+            printf("                    Error opening file.\n");
             return;
         }
 
@@ -344,12 +344,12 @@ void totalmonthlyExpense(char *username) {
                       fileUsername, details.name, details.description, &details.category,
                       &details.amount, details.month, &details.date, &details.year) != EOF) {
             if (strcmp(username, fileUsername) == 0 && strcmp(monthcheck, details.month) == 0 && yearcheck == details.year) {
-                printf("Name: %s\n", details.name);
-                printf("Description: %s\n", details.description);
-                printf("Category: %c\n", details.category);
-                printf("Amount: %.2f\n", details.amount);
-                printf("Date: %s %d, %d\n", details.month, details.date, details.year);
-                printf("-----------------------------------------------------------\n");
+                printf("                    Name: %s\n", details.name);
+                printf("                    Description: %s\n", details.description);
+                printf("                    Category: %c\n", details.category);
+                printf("                    Amount: %.2f\n", details.amount);
+                printf("                    Date: %s %d, %d\n", details.month, details.date, details.year);
+                printf("                    -----------------------------------------------------------\n");
                 totalexp += details.amount;
                 found = 1;
             }
@@ -358,9 +358,9 @@ void totalmonthlyExpense(char *username) {
         fclose(f);
 
         if (found) {
-            printf("The total monthly expense for %s in %s %d is: %.2f\n", username, monthcheck, yearcheck, totalexp);
+            printf("                    The total monthly expense for %s in %s %d is: %.2f\n", username, monthcheck, yearcheck, totalexp);
         } else {
-            printf("No expenses found for user %s in %s %d\n", username, monthcheck, yearcheck);
+            printf("                    No expenses found for user %s in %s %d\n", username, monthcheck, yearcheck);
         }
 
         
@@ -372,13 +372,13 @@ void totalyearlyExpense(char *username) {
         int yearcheck;
         float totalexp = 0;
 
-        printf("Enter the year to check your monthly expense statement (e.g., 2024): ");
+        printf("                    Enter the year to check your monthly expense statement (e.g., 2024): ");
         scanf("%d", &yearcheck);
 
         FILE *f = fopen("Expense_details.txt", "r");
 
         if (f == NULL) {
-            printf("Error opening file.\n");
+            printf("                    Error opening file.\n");
             return;
         }
 
@@ -386,8 +386,8 @@ void totalyearlyExpense(char *username) {
         struct user_expense_details details;
         int found = 0;
 
-        printf("\nExpense statements for user: %s\n", username);
-        printf("-----------------------------------------------------------\n");
+        printf("\n                    Expense statements for user: %s\n", username);
+        printf("                    -----------------------------------------------------------\n");
 
         // Reading data with comma and space separation
         while (fscanf(f, "%[^,], %49[^,], %99[^,], %c, %f, %9[^,], %d, %d\n", 
@@ -396,23 +396,23 @@ void totalyearlyExpense(char *username) {
             if (strcmp(username, fileUsername) == 0 && yearcheck == details.year) {
                 found = 1;
                 totalexp += details.amount;
-                printf("Name: %s\n", details.name);
-                printf("Description: %s\n", details.description);
-                printf("Category: %c\n", details.category);
-                printf("Amount: %.2f\n", details.amount);
-                printf("Date: %s %d, %d\n", details.month, details.date, details.year);
-                printf("-----------------------------------------------------------\n");
+                printf("                    Name: %s\n", details.name);
+                printf("                    Description: %s\n", details.description);
+                printf("                    Category: %c\n", details.category);
+                printf("                    Amount: %.2f\n", details.amount);
+                printf("                    Date: %s %d, %d\n", details.month, details.date, details.year);
+                printf("                    -----------------------------------------------------------\n");
             }
         }
 
         fclose(f);
 
         if (found != 1) {
-            printf("No record found\n");
-            printf("-----------------------------------------------------------\n");
+            printf("                    No record found\n");
+            printf("                    -----------------------------------------------------------\n");
         } else {
-            printf("Total Yearly Expense: %.2f\n", totalexp);
-            printf("-----------------------------------------------------------\n");
+            printf("                    Total Yearly Expense: %.2f\n", totalexp);
+            printf("                    -----------------------------------------------------------\n");
         }
 
         

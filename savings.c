@@ -1,25 +1,11 @@
-int flag=0;
-do
-{
-    system("clear");
-
-
-
-
-    printf("\n1. Run again\n");
-    printf("0. Exit\n");
-    int choice=0;
-    printf("Enter your choice : ");
-    scanf("%d",&choice);
-    
-    switch (choice)
-    {
-    case 1:
-        flag=1;
-        break;
-    case 0:
-        flag=0;
-        break;
-    
-    }
-} while (flag==1);
+#include<stdio.h>
+#include<stdlib.h>
+int main(){
+    printf("                                                               =========================================================================                   \n");
+    printf("                                                               ||                         \033[33m$_$  Expensify  $_$\033[0m                         ||                   \n");
+    printf("                                                               ||---------------------------------------------------------------------||                   \n");
+    printf("                                                               ||                   \033[32mWelcome to Smart Money Tracking!\033[0m                  ||                   \n");
+    printf("                                                               =========================================================================                   \n");
+    printf("\n\n\n\n\n\n");
+    return 0;
+}

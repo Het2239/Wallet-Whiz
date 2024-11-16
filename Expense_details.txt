@@ -1,2 +1,3 @@
 Het, Restaursnt, mcD burger, U, 400.00, November, 10, 2024
 Het, Party, Birthday party, U, 1000.00, November, 16, 2024
+Devam, Zepto, coldrinks, U, 50.00, November, 16, 2024

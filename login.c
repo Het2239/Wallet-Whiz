@@ -3,35 +3,35 @@
 void registerUser(struct user_data *user) {
     FILE *f = fopen("credentials.txt", "a");
     if (f == NULL) {
-        printf("Error opening file for writing.\n");
+        printf("                    Error opening file for writing.\n");
         return;
     }
 
-    printf("Enter a username: ");
+    printf("                    Enter a username: ");
     scanf("%s", user->username);
-    printf("Enter a password: ");
+    printf("                    Enter a password: ");
     scanf("%s", user->password);
 
     fprintf(f, "%s %s\n", user->username, user->password); // Store credentials in the file
     fclose(f);
 
-    printf("Registration successful!\n");
+    printf("                    Registration successful!\n");
 }
 
 int loginUser(struct user_data *user) {
     FILE *f = fopen("credentials.txt", "r");
     if (f == NULL) {
-        printf("Error opening file for reading or no registered users.\n");
-        return;
+        printf("                    Error opening file for reading or no registered users.\n");
+        return 0;
     }
 
     char storedUsername[50];
     char storedPassword[50];
     int found = 0;
 
-    printf("Enter your username: ");
+    printf("                    Enter your username: ");
     scanf("%s", user->username);
-    printf("Enter your password: ");
+    printf("                    Enter your password: ");
     scanf("%s", user->password);
 
     while (fscanf(f, "%s %s", storedUsername, storedPassword) != EOF) {
@@ -45,10 +45,10 @@ int loginUser(struct user_data *user) {
     fclose(f);
 
     if (found) {
-        printf("Login successful!\n");
+        printf("                    Login successful!\n");
         return 1;
     } else {
-        printf("Invalid username or password.\n");
+        printf("                    Invalid username or password.\n");
         return 0;
     }
 }
