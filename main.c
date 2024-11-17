@@ -157,7 +157,7 @@ int main() {
                    
                         
                     readExpense(user.username);
-                    printf("\nPress Enter to continue...");
+                    printf("\n\n\n\t\t\t\t\033[3;34mPress Enter to continue...\033[0m");
                     getchar(); // Wait for user input to continue
                     getchar(); // Handle newline from previous inpu
                         
@@ -169,7 +169,7 @@ int main() {
                     banner();
                     
                     totalmonthlyExpense(user.username);
-                    printf("\nPress Enter to continue...");
+                    printf("\n\n\n\t\t\t\t\033[3;34mPress Enter to continue...\033[0m");
                     getchar(); // Wait for user input to continue
                     getchar(); // Handle newline from previous inpu
 
@@ -182,7 +182,7 @@ int main() {
                     banner();
                     
                     totalyearlyExpense(user.username);
-                    printf("\nPress Enter to continue...");
+                    printf("\n\n\n\t\t\t\t\033[3;34mPress Enter to continue...\033[0m");
                     getchar(); // Wait for user input to continue
                     getchar(); // Handle newline from previous input
                         
@@ -304,7 +304,7 @@ int main() {
                     banner();
                     
                     viewIncome(user.username);
-                    printf("\nPress Enter to continue...");
+                    printf("\n\n\n\t\t\t\t\033[3;34mPress Enter to continue...\033[0m");
                     getchar(); // Wait for user input to continue
                     getchar(); // Handle newline from previous inpu
                         
@@ -316,7 +316,7 @@ int main() {
                     banner();
                    
                     monthlyIncome(user.username);
-                    printf("\nPress Enter to continue...");
+                    printf("\n\n\n\t\t\t\t\033[3;34mPress Enter to continue...\033[0m");
                     getchar(); // Wait for user input to continue
                     getchar(); // Handle newline from previous inpu
                         
@@ -328,7 +328,7 @@ int main() {
                     banner();
                     
                     yearlyIncome(user.username);
-                    printf("\nPress Enter to continue...");
+                    printf("\n\n\n\t\t\t\t\033[3;34mPress Enter to continue...\033[0m");
                     getchar(); // Wait for user input to continue
                     getchar(); // Handle newline from previous inpu
                         
@@ -341,7 +341,7 @@ int main() {
                     
                         
                     monthlyexpenseReport(user.username);
-                    printf("\nPress Enter to continue...");
+                    printf("\n\n\n\t\t\t\t\033[3;34mPress Enter to continue...\033[0m");
                     getchar(); // Wait for user input to continue
                     getchar(); // Handle newline from previous inpu
 
@@ -354,7 +354,7 @@ int main() {
                     
                         
                     yearlyexpenseReport(user.username);
-                    printf("\nPress Enter to continue...");
+                    printf("\n\n\n\t\t\t\t\033[3;34mPress Enter to continue...\033[0m");
                     getchar(); // Wait for user input to continue
                     getchar(); // Handle newline from previous inpu
 
