@@ -136,7 +136,7 @@ void monthlyexpenseReport(char *username) {
     float minExpense = FLT_MAX;
     struct user_expense_details1 maxExpenseDetails;
     struct user_expense_details1 minExpenseDetails;
-
+    float totalsave=0.0;
     printf("\n                    Expense statements for user: %s\n", username);
     printf("                    -----------------------------------------------------------\n");
 
@@ -146,6 +146,9 @@ void monthlyexpenseReport(char *username) {
                   &detail.amount, detail.month, &detail.date, &detail.year) != EOF) {
         if (strcmp(username, fileUsername) == 0 && strcmp(monthcheck, detail.month) == 0 && yearcheck == detail.year) {
             found = 1;
+            if(detail.category=='C'){
+                totalsave+=detail.amount;
+            }
             totalexp += detail.amount;
 
             // Check for max and min expense
@@ -182,7 +185,8 @@ void monthlyexpenseReport(char *username) {
     float money=0;
     printf("                    Total Income : \033[32m%.2f\033[0m\n",totalinc);
     printf("                    Total Expense : \033[31m%.2f\033[0m\n",totalexp);
-    money=totalinc-totalexp;
+    printf("                    Total Savings : \033[32m%.2f\033[0m\n",totalsave);
+    money=totalinc-totalexp+totalsave;
     if (money>=0)
     {
         printf("                    Balance available : \033[0;32m%.2f\033[0m\n",money);
@@ -293,7 +297,7 @@ void yearlyexpenseReport(char *username){
     float minExpense = FLT_MAX;
     struct user_expense_details1 maxExpenseDetails;
     struct user_expense_details1 minExpenseDetails;
-
+    float totalsave=0.0;
     printf("\n                    Expense statements for user: %s\n", username);
     printf("                    -----------------------------------------------------------\n");
 
@@ -303,6 +307,9 @@ void yearlyexpenseReport(char *username){
                   &detail.amount, detail.month, &detail.date, &detail.year) != EOF) {
         if (strcmp(username, fileUsername) == 0 && yearcheck == detail.year) {
             found = 1;
+            if(detail.category=='S'){
+                totalsave += detail.amount;
+            }
             totalexp += detail.amount;
 
             // Check for max and min expense
@@ -339,7 +346,8 @@ void yearlyexpenseReport(char *username){
     float money=0;
     printf("                    Total Income : \033[32m%.2f\n\033[0m",totalinc);
     printf("                    Total Expense : \033[31m%.2f\n\033[0m",totalexp);
-    money=totalinc-totalexp;
+    printf("                    Total Savings : \033[32m%.2f\n\033[0m",totalsave);
+    money=totalinc-totalexp+totalsave;
     if (money>=0)
     {
         printf("                    Balance available : \033[0;32m%.2f\033[0m\n",money);

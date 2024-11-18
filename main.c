@@ -5,6 +5,7 @@
 #include"expense.h"
 #include"income.h"
 #include"report.h"
+#include"savings.h"
 
 void banner(){
     printf("                                                               =========================================================================                   \n");
@@ -63,6 +64,7 @@ int main() {
                 printf("                    \033[36m13. View yearly Income\033[0m\n");
                 printf("                    \033[36m14. View monthly Report\033[0m\n");
                 printf("                    \033[36m15. View yearly Report\033[0m\n");
+                printf("                    \033[36m16. View Total Savings\033[0m\n");
                 printf("                    \033[36m0. Exit\033[0m\n");
                 printf("                    \033[36mEnter your Choioce :\033[0m ");
                 int pchoice=0;
@@ -354,6 +356,19 @@ int main() {
                     
                         
                     yearlyexpenseReport(user.username);
+                    printf("\n\n\n\t\t\t\t\033[3;34mPress Enter to continue...\033[0m");
+                    getchar(); // Wait for user input to continue
+                    getchar(); // Handle newline from previous inpu
+
+                    mflag=1;
+                    break;
+                case 16:
+                    
+                    system("clear");
+                    banner();
+                    
+                        
+                    savings(user.username);
                     printf("\n\n\n\t\t\t\t\033[3;34mPress Enter to continue...\033[0m");
                     getchar(); // Wait for user input to continue
                     getchar(); // Handle newline from previous inpu
