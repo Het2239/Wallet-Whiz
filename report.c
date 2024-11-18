@@ -144,7 +144,7 @@ void monthlyexpenseReport(char *username) {
     while (fscanf(f, "%[^,], %49[^,], %99[^,], %c, %f, %9[^,], %d, %d\n",
                   fileUsername, detail.name, detail.description, &detail.category,
                   &detail.amount, detail.month, &detail.date, &detail.year) != EOF) {
-        if (strcmp(username, fileUsername) == 0 && strcmp(monthcheck, detail.month) == 0 && yearcheck == detail.year) {
+        if (strcmp(username, fileUsername) == 0 && strcmp(monthcheck, detail.month) == 0 && yearcheck == detail.year && detail.category!='S') {
             found = 1;
             if(detail.category=='C'){
                 totalsave+=detail.amount;
@@ -305,11 +305,12 @@ void yearlyexpenseReport(char *username){
     while (fscanf(f, "%[^,], %49[^,], %99[^,], %c, %f, %9[^,], %d, %d\n",
                   fileUsername, detail.name, detail.description, &detail.category,
                   &detail.amount, detail.month, &detail.date, &detail.year) != EOF) {
-        if (strcmp(username, fileUsername) == 0 && yearcheck == detail.year) {
-            found = 1;
-            if(detail.category=='S'){
+                    if(strcmp(username, fileUsername) == 0 && detail.category=='S'){
                 totalsave += detail.amount;
             }
+        if (strcmp(username, fileUsername) == 0 && yearcheck == detail.year && detail.category!='S') {
+            found = 1;
+            
             totalexp += detail.amount;
 
             // Check for max and min expense

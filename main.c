@@ -32,15 +32,23 @@ int main() {
         case 1:
             system("clear");
             banner();
-            registerUser(&user);
+            int flg=0;
+            do
+            {
+                flg=registerUser(&user);
+            } while (flg==0);
+            
+            
+            
             
         case 2:
         int flag=0;
         system("clear");
-        printf("                    \033[34mLogin to get started.\033[0m\n");
+        
         do
         {
             banner();
+            printf("                    \033[34mLogin to get started.\033[0m\n");
             int stat = loginUser(&user);
             
             if (stat == 1)
@@ -68,7 +76,7 @@ int main() {
                 printf("                    \033[36m16. View yearly Report\033[0m\n");
                 printf("                    \033[36m17. View Total Savings\033[0m\n");
                 printf("                    \033[36m0. Exit\033[0m\n");
-                printf("                    \033[36mEnter your Choioce :\033[0m ");
+                printf("                    \033[36mEnter your Choice :\033[0m ");
                 int pchoice=0;
                 scanf("%d",&pchoice);
                 switch (pchoice)

@@ -11,7 +11,7 @@ struct user_data {
 };
 
 // Function prototypes
-void registerUser(struct user_data *user);
+int registerUser(struct user_data *user);
 int loginUser(struct user_data *user);
 
 #endif // LOGIN_H

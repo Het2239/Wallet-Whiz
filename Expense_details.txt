@@ -4,3 +4,4 @@ Devam, Zepto, coldrinks, U, 50.00, November, 16, 2024
 Het, Trends, cloth shopping, U, 560.00, November, 16, 2024
 Het, Netflix, netflix monthly subscription, U, 199.00, November, 18, 2024
 Het, Netflix, netflix monthly subscription, U, 199.00, December, 16, 2024
+Het, dummy, dafgsiu, S, 10000.00, November, 18, 2024

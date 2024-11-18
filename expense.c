@@ -40,8 +40,14 @@ void enterExpense(char *username) {
         struct user_expense_details details;
         printf("                    \033[34mEnter the name of the expense:\033[0m ");
         scanf(" %[^\n]s", details.name); // Reads input with spaces
+        if(strlen(details.name)>50){
+        printf("                    \033[31mLength Exceeded! Try Again.\033[0m\n");
+    }
         printf("                    \033[34mEnter a description for the expense:\033[0m ");
         scanf(" %[^\n]s", details.description); // Reads input with spaces
+        if(strlen(details.description)>100){
+        printf("                    \033[31mLength Exceeded! Try Again.\033[0m\n");
+    }
         printf("                    \033[34mEnter the category (U, H, S, P, O):\033[0m ");
         scanf(" %c", &details.category); // Ensure leading space to read a single character correctly
         if (details.category == 'U' ||details.category == 'H' ||details.category == 'S' ||details.category == 'P' ||details.category == 'O' )
@@ -140,6 +146,9 @@ void deleteExpense(char *username) {
         // Take input for expense name, month, date, and year to identify which record to delete
         printf("                    \033[34mEnter the name of the expense to delete:\033[0m ");
         scanf(" %[^\n]s", expenseName);
+        if(strlen(expenseName)>50){
+        printf("                    \033[31mLength Exceeded! Try Again.\033[0m\n");
+    }
         printf("                    Would you like to:\n                    1. Enter the date manually\n                    2. Use the current date\n                    Enter your choice : ");
         int dateChoice;
         scanf("%d", &dateChoice);
@@ -230,6 +239,9 @@ void editExpense(char *username) {
         // Take input for expense name, month, date, and year to identify which record to delete
         printf("                    \033[34mEnter the name of the expense to edit\033[0m: ");
         scanf(" %[^\n]s", expenseName);
+        if(strlen(expenseName)>50){
+        printf("                    \033[31mLength Exceeded! Try Again.\033[0m\n");
+    }
         printf("                    \033[34mEnter the month of the expense to edit (e.g., January):\033[0m ");
         scanf("%s", month);
         printf("                    \033[34mEnter the date of the expense to edit (e.g., 15):\033[0m ");
@@ -276,8 +288,14 @@ void editExpense(char *username) {
                 
                 printf("                    \033[34mEnter the new name of the Expense:\033[0m ");
                 scanf(" %[^\n]s", data.name);
+                if(strlen(data.name)>50){
+                    printf("                    \033[31mLength Exceeded! Try Again.\033[0m\n");
+                }
                 printf("                    \033[34mEnter a new description for the Expense:\033[0m ");
                 scanf(" %[^\n]s", data.description); // Reads input with spaces
+                if(strlen(data.description)>100){
+                    printf("                    \033[31mLength Exceeded! Try Again.\033[0m\n");
+                }
                 printf("                    \033[34mEnter the category (U, H, S, P, O):\033[0m ");
                 scanf(" %c", &data.category); // Ensure leading space to read a single character correctly
                 if (data.category == 'U' ||data.category == 'H' ||data.category == 'S' ||data.category == 'P' ||data.category == 'O' )
@@ -608,8 +626,14 @@ void addReccuringexpense(char *username){
     // User input and saving to file
     printf("                    \033[34mEnter the name of the expense:\033[0m ");
         scanf(" %[^\n]s", new_expense.name); // Reads input with spaces
+        if(strlen(new_expense.name)>50){
+            printf("                    \033[31mLength Exceeded! Try Again.\033[0m\n");
+        }
         printf("                    \033[34mEnter a description for the expense:\033[0m ");
         scanf(" %[^\n]s", new_expense.description); // Reads input with spaces
+        if(strlen(new_expense.description)>100){
+            printf("                    \033[31mLength Exceeded! Try Again.\033[0m\n");
+        }
         printf("                    \033[34mEnter the category (U, H, S, P, O):\033[0m ");
         scanf(" %c", &new_expense.category); // Ensure leading space to read a single character correctly
         if (new_expense.category == 'U' ||new_expense.category == 'H' ||new_expense.category == 'S' ||new_expense.category == 'P' ||new_expense.category == 'O' )
@@ -647,7 +671,7 @@ void addReccuringexpense(char *username){
             return;
         }
 
-        printf("                    Enter the time duration of the recurring expense : ");
+        printf("                    Enter the time duration of the recurring expense (in Days..) : ");
         int d=0;
         scanf("%d",&d);
         printf("                    Enter the no. of times you want this expense to be added : ");

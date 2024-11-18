@@ -38,8 +38,15 @@ void addIncome(char *username) {
 
     printf("                    \033[34mEnter the name of the Income:\033[0m ");
     scanf(" %[^\n]s", detail.name);
+    if(strlen(detail.name)>50){
+        printf("                    \033[31mLength Exceeded! Try Again.\033[0m\n");
+        return;
+    }
     printf("                    \033[34mEnter a description for the Income:\033[0m ");
     scanf(" %[^\n]s", detail.description); // Reads input with spaces
+    if(strlen(detail.description)>100){
+        printf("                    \033[31mLength Exceeded! Try Again.\033[0m\n");
+    }
     printf("                    \033[34mEnter the amount:\033[0m ");
     scanf("%f", &detail.amount);
 
@@ -84,6 +91,9 @@ void deleteIncome(char *username) {
 
         printf("                    \033[34mEnter the name of the Income to delete:\033[0m ");
         scanf(" %[^\n]s", incomeName);
+        if(strlen(incomeName)>50){
+        printf("                    \033[31mLength Exceeded! Try Again.\033[0m\n");
+        }
 
         printf("                    Would you like to:\n                    1. Enter the date manually\n                    2. Use the current date\n");
         int dateChoice;
@@ -169,6 +179,9 @@ void editIncome(char *username) {
     // Prompt user for income details to edit
     printf("                    \033[34mEnter the name of the Income to edit:\033[0m ");
     scanf(" %[^\n]s", incomeName);
+    if(strlen(incomeName)>50){
+        printf("                    \033[31mLength Exceeded! Try Again.\033[0m\n");
+    }
 
     printf("                    Would you like to:\n                    1. Enter the date manually\n                    2. Use the current date\n                    Enter your choice: ");
     scanf("%d", &dateChoice);
@@ -193,8 +206,14 @@ void editIncome(char *username) {
     struct user_income_details data;
     printf("                    \033[34mEnter the new name of the Income:\033[0m ");
     scanf(" %[^\n]s", data.name);
+    if(strlen(data.name)>50){
+        printf("                    \033[31mLength Exceeded! Try Again.\033[0m\n");
+    }
     printf("                    \033[34mEnter a new description for the Income:\033[0m ");
     scanf(" %[^\n]s", data.description);
+    if(strlen(data.description)>100){
+        printf("                    \033[31mLength Exceeded! Try Again.\033[0m\n");
+    }
     printf("                    \033[34mEnter the new amount:\033[0m ");
     scanf("%f", &data.amount);
 
