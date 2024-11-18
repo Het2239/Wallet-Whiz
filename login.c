@@ -61,7 +61,7 @@ int loginUser(struct user_data *user) {
     while (fscanf(f,"%s %s",urename,psd) != EOF)
     {
         if(strcmp(urename,user->username) != 0){
-            printf("                    \033[31mNo Such Username Exists please try again or Register if you haven't.\033[0m\n");
+            
             check=0;
         }
         else{
@@ -70,10 +70,13 @@ int loginUser(struct user_data *user) {
 
         }
     }
+
     if (check==0)
     {
+        printf("                    \033[31mNo Such Username Exists please try again or Register if you haven't.\033[0m\n");
         return 0;
     }
+    
     
     
     printf("                    \033[36mEnter your password:\033[0m ");

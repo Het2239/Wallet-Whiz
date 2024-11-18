@@ -44,7 +44,7 @@ void monthlyexpenseReport(char *username) {
     int date = 0;
     float totalinc = 0;
 
-    printf("                    Would you like to:\n                    1. Enter the date manually\n                    2. Use the current date\n                    Enter your choice: ");
+    printf("                    Would you like to:\n                    1. Enter the month manually\n                    2. Use the current month\n                    Enter your choice: ");
     int dateChoice;
     scanf("%d", &dateChoice);
 
@@ -206,7 +206,7 @@ void yearlyexpenseReport(char *username){
     int date = 0;
     float totalinc = 0;
 
-    printf("                    Would you like to:\n                    1. Enter the date manually\n                    2. Use the current date\n                    Enter your choice: ");
+    printf("                    Would you like to:\n                    1. Enter the year manually\n                    2. Use the current year\n                    Enter your choice: ");
     int dateChoice;
     scanf("%d", &dateChoice);
 
