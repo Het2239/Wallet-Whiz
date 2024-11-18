@@ -13,12 +13,12 @@ struct expense_details {
     char category;
 };
 
-struct Node {
+struct node {
     struct expense_details s;
-    struct Node *next;
+    struct node *next;
 };
 
-struct Node *head = NULL;
+struct node *heaD = NULL;
 
 void savings(char *username) {
     FILE *f = fopen("Expense_details.txt", "r"); // Adjust file path as needed
@@ -41,7 +41,7 @@ void savings(char *username) {
                   fileUsername, details.name, details.description, &details.category,
                   &details.amount, details.month, &details.date, &details.year) != EOF) {
         if (strcmp(username, fileUsername) == 0 && cat == details.category) {
-            struct Node *newnode = (struct Node *)malloc(sizeof(struct Node));
+            struct node *newnode = (struct node *)malloc(sizeof(struct node));
             if (newnode == NULL) {
                 printf("Memory allocation failed.\n");
                 fclose(f);
@@ -60,10 +60,10 @@ void savings(char *username) {
             totalsave+=details.amount;
 
             // Insert at the end of the list
-            if (head == NULL) {
-                head = newnode;
+            if (heaD == NULL) {
+                heaD = newnode;
             } else {
-                struct Node *buffernode = head;
+                struct node *buffernode = heaD;
                 while (buffernode->next != NULL) {
                     buffernode = buffernode->next;
                 }
@@ -75,7 +75,7 @@ void savings(char *username) {
     }
 
     if (found) {
-        struct Node *buffernode = head;
+        struct node *buffernode = heaD;
         while (buffernode != NULL) {
             printf("                    \033[1;31mName:\033[0m %s\n", buffernode->s.name);
             printf("                    \033[1;31mDescription:\033[0m %s\n", buffernode->s.description);
@@ -91,10 +91,10 @@ void savings(char *username) {
         printf("                    \033[31mNo Savings found for user:\033[0m %s\n", username);
         printf("                    -----------------------------------------------------------\n");
     }
-    struct Node *buffernode;
-	while(head!=NULL){
-		buffernode=head;
-		head=head->next;
+    struct node *buffernode;
+	while(heaD!=NULL){
+		buffernode=heaD;
+		heaD=heaD->next;
 		free(buffernode);
     fclose(f);
 }

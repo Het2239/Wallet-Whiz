@@ -50,21 +50,22 @@ int main() {
                 system("clear");
                 banner();
                 printf("                    \033[36m1. Add Expense\033[0m\n");
-                printf("                    \033[36m2. Edit Expense\033[0m\n");
-                printf("                    \033[36m3. Delete Expense\033[0m\n");
-                printf("                    \033[36m4. View all Expense\033[0m\n");
-                printf("                    \033[36m5. View monthly Expense\033[0m\n");
-                printf("                    \033[36m6. View yearly Expense\033[0m\n");
-                printf("                    \033[36m7. View Expense based on Category\033[0m\n");
-                printf("                    \033[36m8. Add Income\033[0m\n");
-                printf("                    \033[36m9. Edit Income\033[0m\n");
-                printf("                    \033[36m10. Delete Income\033[0m\n");
-                printf("                    \033[36m11. View all Income\033[0m\n");
-                printf("                    \033[36m12. View monthly Income\033[0m\n");
-                printf("                    \033[36m13. View yearly Income\033[0m\n");
-                printf("                    \033[36m14. View monthly Report\033[0m\n");
-                printf("                    \033[36m15. View yearly Report\033[0m\n");
-                printf("                    \033[36m16. View Total Savings\033[0m\n");
+                printf("                    \033[36m2. Add Recurring Expense\033[0m\n");
+                printf("                    \033[36m3. Edit Expense\033[0m\n");
+                printf("                    \033[36m4. Delete Expense\033[0m\n");
+                printf("                    \033[36m5. View all Expense\033[0m\n");
+                printf("                    \033[36m6. View monthly Expense\033[0m\n");
+                printf("                    \033[36m7. View yearly Expense\033[0m\n");
+                printf("                    \033[36m8. View Expense based on Category\033[0m\n");
+                printf("                    \033[36m9. Add Income\033[0m\n");
+                printf("                    \033[36m10. Edit Income\033[0m\n");
+                printf("                    \033[36m11. Delete Income\033[0m\n");
+                printf("                    \033[36m12. View all Income\033[0m\n");
+                printf("                    \033[36m13. View monthly Income\033[0m\n");
+                printf("                    \033[36m14. View yearly Income\033[0m\n");
+                printf("                    \033[36m15. View monthly Report\033[0m\n");
+                printf("                    \033[36m16. View yearly Report\033[0m\n");
+                printf("                    \033[36m17. View Total Savings\033[0m\n");
                 printf("                    \033[36m0. Exit\033[0m\n");
                 printf("                    \033[36mEnter your Choioce :\033[0m ");
                 int pchoice=0;
@@ -101,6 +102,33 @@ int main() {
                 case 2:
                     system("clear");
                     banner();
+                    int f6=0;
+                    do
+                    {
+                        addReccuringexpense(user.username);
+
+                        printf("\n                    \033[32m1. Run again\033[0m\n");
+                        printf("                    \033[31m0. Exit\033[0m\n");
+                        int choice=0;
+                        printf("                    \033[36mEnter your choice :\033[0m ");
+                        scanf("%d",&choice);
+                        
+                        switch (choice)
+                        {
+                        case 1:
+                            f6=1;
+                            break;
+                        case 0:
+                            f6=0;
+                            break;
+                        
+                        }
+                    } while (f6==1);
+                    mflag=1;
+                    break;
+                case 3:
+                    system("clear");
+                    banner();
                     int f2=0;
                     do
                     {
@@ -125,7 +153,7 @@ int main() {
                     } while (f2==1);
                     mflag=1;
                     break;
-                case 3:
+                case 4:
                     system("clear");
                     banner();
                     int f3=0;
@@ -152,7 +180,7 @@ int main() {
                     } while (f3==1);
                     mflag=1;
                     break;
-                case 4:
+                case 5:
                     
                     system("clear");
                     banner();
@@ -165,7 +193,7 @@ int main() {
                         
                     mflag=1;
                     break;
-                case 5:
+                case 6:
                     
                     system("clear");
                     banner();
@@ -178,7 +206,7 @@ int main() {
                         
                     mflag=1;
                     break;
-                case 6:
+                case 7:
                     
                     system("clear");
                     banner();
@@ -192,7 +220,7 @@ int main() {
                         
                     mflag=1;
                     break;
-                case 7:
+                case 8:
                     int f7=0;
                     system("clear");
                     banner();
@@ -219,7 +247,7 @@ int main() {
                     } while (f7==1);
                     mflag=1;
                     break;
-                case 8:
+                case 9:
                     int f8=0;
                     system("clear");
                     banner();
@@ -246,7 +274,7 @@ int main() {
                     } while (f8==1);
                     mflag=1;
                     break;
-                case 9:
+                case 10:
                     int f9=0;
                     system("clear");
                     banner();
@@ -273,7 +301,7 @@ int main() {
                     } while (f9==1);
                     mflag=1;
                     break;
-                case 10:
+                case 11:
                     int f10=0;
                     system("clear");
                     banner();
@@ -300,7 +328,7 @@ int main() {
                     } while (f10==1);
                     mflag=1;
                     break;
-                case 11:
+                case 12:
                     
                     system("clear");
                     banner();
@@ -312,7 +340,7 @@ int main() {
                         
                     mflag=1;
                     break;
-                case 12:
+                case 13:
                     
                     system("clear");
                     banner();
@@ -324,7 +352,7 @@ int main() {
                         
                     mflag=1;
                     break;
-                case 13:
+                case 14:
                     
                     system("clear");
                     banner();
@@ -336,7 +364,7 @@ int main() {
                         
                     mflag=1;
                     break;
-                case 14:
+                case 15:
                     
                     system("clear");
                     banner();
@@ -349,7 +377,7 @@ int main() {
 
                     mflag=1;
                     break;
-                case 15:
+                case 16:
                     
                     system("clear");
                     banner();
@@ -362,7 +390,7 @@ int main() {
 
                     mflag=1;
                     break;
-                case 16:
+                case 17:
                     
                     system("clear");
                     banner();

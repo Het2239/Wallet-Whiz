@@ -528,3 +528,137 @@ void totalyearlyExpense(char *username) {
 }
 
 
+struct Node {
+    struct user_expense_details s;
+    struct Node *next;
+};
+
+struct Node *head = NULL;
+
+// Function to add a new expense to the linked list
+void add_expense(struct user_expense_details details) {
+    struct Node *newnode = (struct Node *)malloc(sizeof(struct Node));
+    if (newnode == NULL) {
+        printf("Memory allocation failed.\n");
+        return;
+    }
+
+    // Copy details to the new node
+    strcpy(newnode->s.name, details.name);
+    strcpy(newnode->s.description, details.description);
+    newnode->s.category = details.category;
+    newnode->s.amount = details.amount;
+    strcpy(newnode->s.month, details.month);
+    newnode->s.date = details.date;
+    newnode->s.year = details.year;
+    newnode->next = NULL;
+
+    // Insert at the end of the list
+    if (head == NULL) {
+        head = newnode;
+    } else {
+        struct Node *buffernode = head;
+        while (buffernode->next != NULL) {
+            buffernode = buffernode->next;
+        }
+        buffernode->next = newnode;
+    }
+}
+
+// Function to save expense details to a file
+void save_expense_to_file(struct user_expense_details details, const char *filename, char *username) {
+    FILE *file = fopen(filename, "a");
+    if (file == NULL) {
+        printf("Error opening file %s.\n", filename);
+        return;
+    }
+
+    fprintf(file, "%s, %s, %s, %c, %.2f, %s, %d, %d\n", 
+            username, details.name, details.description, details.category,
+            details.amount, details.month, details.date, details.year);
+    
+    fclose(file);
+}
+
+// Function to generate recurring expenses and save them to a file
+void generate_recurring_expense(struct user_expense_details base_expense, int interval_days, int num_periods,char *username) {
+    time_t current_time;
+    struct tm *time_info;
+    time(&current_time);
+    time_info = localtime(&current_time);
+
+    for (int i = 0; i < num_periods; i++) {
+        time_info->tm_mday += interval_days; // Add the interval days
+        mktime(time_info); // Normalize the time structure
+
+        // Create a copy of the base expense with the updated date
+        struct user_expense_details new_expense = base_expense;
+        new_expense.date = time_info->tm_mday;
+        new_expense.year = time_info->tm_year + 1900;
+        strftime(new_expense.month, 10, "%B", time_info); // Get the month name
+
+        add_expense(new_expense);
+        save_expense_to_file(new_expense, "Expense_details.txt",username); // Save to the recurring expense file
+    }
+}
+
+void addReccuringexpense(char *username){
+    struct user_expense_details new_expense;
+
+    // User input and saving to file
+    printf("                    \033[34mEnter the name of the expense:\033[0m ");
+        scanf(" %[^\n]s", new_expense.name); // Reads input with spaces
+        printf("                    \033[34mEnter a description for the expense:\033[0m ");
+        scanf(" %[^\n]s", new_expense.description); // Reads input with spaces
+        printf("                    \033[34mEnter the category (U, H, S, P, O):\033[0m ");
+        scanf(" %c", &new_expense.category); // Ensure leading space to read a single character correctly
+        if (new_expense.category == 'U' ||new_expense.category == 'H' ||new_expense.category == 'S' ||new_expense.category == 'P' ||new_expense.category == 'O' )
+        {
+            
+        }
+        else
+        {
+            printf("\033[31mInvalid Input!\033[0m");
+            return;
+        }
+        
+        
+        printf("                    \033[34mEnter the amount:\033[0m ");
+        scanf("%f", &new_expense.amount);
+
+        printf("                    Would you like to:\n                    1. Enter the date manually\n                    2. Use the current date\n                    Enter your choice : ");
+        int dateChoice;
+        scanf("%d", &dateChoice);
+
+        if (dateChoice == 1) {
+            // Manual date input
+            printf("                    Enter the month (e.g., January): ");
+            scanf("%s", new_expense.month);
+            printf("                    Enter the date (e.g., 15): ");
+            scanf("%d", &new_expense.date);
+            printf("                    Enter the year (e.g., 2023): ");
+            scanf("%d", &new_expense.year);
+        } else if (dateChoice == 2) {
+            // Get current date automatically
+            getCurrentDate(new_expense.month, &new_expense.date, &new_expense.year);
+            printf("                    Using current date: \033[35m%s %d, %d\n\033[0m", new_expense.month, new_expense.date, new_expense.year);
+        } else {
+            printf("                    \033[31mInvalid choice. Please try again.\033[0m\n");
+            return;
+        }
+
+        printf("                    Enter the time duration of the recurring expense : ");
+        int d=0;
+        scanf("%d",&d);
+        printf("                    Enter the no. of times you want this expense to be added : ");
+        int n=0;
+        scanf("%d",&n);
+
+    // Save user input to input file
+    save_expense_to_file(new_expense, "Expense_details.txt",username);
+
+    // Add to linked list and generate recurring expenses
+    add_expense(new_expense);
+    generate_recurring_expense(new_expense, d, n,username);
+}
+

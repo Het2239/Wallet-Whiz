@@ -17,6 +17,11 @@ struct user_expense_details {
     char category;           // Category of the expense (U, H, S, P, O)
 };
 
+struct Node {
+    struct user_expense_details s;
+    struct Node *next;
+};
+
 // Function to get the current date (month, day, year)
 void getCurrentDate(char *month, int *day, int *year);
 
@@ -40,5 +45,13 @@ void totalmonthlyExpense(char *username);
 
 // Function to calculate and display the total yearly expense
 void totalyearlyExpense(char *username);
+
+void add_expense(struct user_expense_details details);
+
+void save_expense_to_file(struct user_expense_details details, const char *filename, char *username);
+
+void generate_recurring_expense(struct user_expense_details base_expense, int interval_days, int num_periods,char *username);
+
+void addReccuringexpense(char *username);
 
 #endif // EXPENSE_TRACKER_H
