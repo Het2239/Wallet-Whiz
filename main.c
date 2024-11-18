@@ -33,10 +33,11 @@ int main() {
             system("clear");
             banner();
             registerUser(&user);
-            printf("                    \033[34mLogin to get started.\033[0m\n");
+            
         case 2:
         int flag=0;
         system("clear");
+        printf("                    \033[34mLogin to get started.\033[0m\n");
         do
         {
             banner();
