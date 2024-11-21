@@ -1,0 +1,14 @@
+User : Het logined in account on 21 November, 2024 at 19:28:01
+User : Het viewed yearly expense for 2024 on 21 November, 2024 at 19:28:18
+User : Het exited the program on 21 November, 2024 at 19:28:01
+User : hvm registered an account on 21 November, 2024 at 19:29:36
+User : hvm logined in account on 21 November, 2024 at 19:29:36
+User : hvm added an expense on 21 November, 2024 at 19:29:36
+User : hvm viewed all expense on 21 November, 2024 at 19:29:36
+User : hvm exited the program on 21 November, 2024 at 19:29:36
+User : HET failed to login on 21 November, 2024 at 19:31:32
+User : het logined in account on 21 November, 2024 at 19:31:32
+User : het exited the program on 21 November, 2024 at 19:31:32
+User : het logined in account on 21 November, 2024 at 21:39:59
+User : het viewed yearly expense report for year 2024 on 21 November, 2024 at 21:40:28
+User : het exited the program on 21 November, 2024 at 21:39:59

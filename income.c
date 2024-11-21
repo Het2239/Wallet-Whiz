@@ -357,7 +357,29 @@ void viewIncome(char *username) {
 }
 
 void monthlyIncome(char *username) {
-    
+
+        FILE *logf=NULL;
+        
+        const char *monthNames[] = {
+        "January", "February", "March", "April", "May", "June", 
+        "July", "August", "September", "October", "November", "December"
+        };
+
+        // Get the current time
+        time_t currentTime;
+        time(&currentTime);
+
+        // Convert to local time
+        struct tm *localTime = localtime(&currentTime);
+
+        // Get day, month, year, hour, minute, second
+        int day = localTime->tm_mday;
+        int month = localTime->tm_mon; // 0-based index (0 = January)
+        int year = localTime->tm_year + 1900;
+        int hour = localTime->tm_hour;
+        int minute = localTime->tm_min;
+        int second = localTime->tm_sec;
+
         char monthcheck[10];
         int yearcheck;
         int date;
@@ -381,7 +403,9 @@ void monthlyIncome(char *username) {
             printf("                    \033[31mInvalid choice. Please try again.\033[0m\n");
             return;
         }
-        
+        logf=fopen("log.txt","a");
+        fprintf(logf,"User : %s viewed monthly income statement for month %s, %d on %02d %s, %04d at %02d:%02d:%02d\n",username,monthcheck,yearcheck,day, monthNames[month], year, hour, minute, second);
+        fclose(logf);
 
         FILE *f = fopen("Income_details.txt", "r");
         if (f == NULL) {
@@ -423,7 +447,29 @@ void monthlyIncome(char *username) {
 }
 
 void yearlyIncome(char *username) {
-    
+
+        FILE *logf=NULL;
+        
+        const char *monthNames[] = {
+        "January", "February", "March", "April", "May", "June", 
+        "July", "August", "September", "October", "November", "December"
+        };
+
+        // Get the current time
+        time_t currentTime;
+        time(&currentTime);
+
+        // Convert to local time
+        struct tm *localTime = localtime(&currentTime);
+
+        // Get day, month, year, hour, minute, second
+        int day = localTime->tm_mday;
+        int month = localTime->tm_mon; // 0-based index (0 = January)
+        int year = localTime->tm_year + 1900;
+        int hour = localTime->tm_hour;
+        int minute = localTime->tm_min;
+        int second = localTime->tm_sec;
+
         int yearcheck;
         char monthcheck[10];
         int date;
@@ -453,6 +499,10 @@ void yearlyIncome(char *username) {
             printf("                    \033[31mError opening file.\033[0m\n");
             return;
         }
+
+        logf=fopen("log.txt","a");
+        fprintf(logf,"User : %s yearly income statement for year %d on %02d %s, %04d at %02d:%02d:%02d\n",username,yearcheck,day, monthNames[month], year, hour, minute, second);
+        fclose(logf);
 
         char fileUsername[50];
         struct user_income_details details;

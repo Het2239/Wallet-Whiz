@@ -62,6 +62,31 @@ void monthlyexpenseReport(char *username) {
         printf("                    \033[31mInvalid choice. Please try again.\033[0m\n");
         return;
     }
+    FILE *logf=NULL;
+        
+        const char *monthNames[] = {
+        "January", "February", "March", "April", "May", "June", 
+        "July", "August", "September", "October", "November", "December"
+        };
+
+        // Get the current time
+        time_t currentTime;
+        time(&currentTime);
+
+        // Convert to local time
+        struct tm *localTime = localtime(&currentTime);
+
+        // Get day, month, year, hour, minute, second
+        int day = localTime->tm_mday;
+        int month = localTime->tm_mon; // 0-based index (0 = January)
+        int year = localTime->tm_year + 1900;
+        int hour = localTime->tm_hour;
+        int minute = localTime->tm_min;
+        int second = localTime->tm_sec;
+
+        logf=fopen("log.txt","a");
+        fprintf(logf,"User : %s viewed monthly expense report for month %s, %d on %02d %s, %04d at %02d:%02d:%02d\n",username,monthcheck,yearcheck,day, monthNames[month], year, hour, minute, second);
+        fclose(logf);
 
     FILE *f = fopen("Income_details.txt", "r");
     if (f == NULL) {
@@ -223,7 +248,31 @@ void yearlyexpenseReport(char *username){
         printf("                    \033[31mInvalid choice. Please try again.\033[0m\n");
         return;
     }
+    FILE *logf=NULL;
+        
+        const char *monthNames[] = {
+        "January", "February", "March", "April", "May", "June", 
+        "July", "August", "September", "October", "November", "December"
+        };
 
+        // Get the current time
+        time_t currentTime;
+        time(&currentTime);
+
+        // Convert to local time
+        struct tm *localTime = localtime(&currentTime);
+
+        // Get day, month, year, hour, minute, second
+        int day = localTime->tm_mday;
+        int month = localTime->tm_mon; // 0-based index (0 = January)
+        int year = localTime->tm_year + 1900;
+        int hour = localTime->tm_hour;
+        int minute = localTime->tm_min;
+        int second = localTime->tm_sec;
+
+        logf=fopen("log.txt","a");
+        fprintf(logf,"User : %s viewed yearly expense report for year %d on %02d %s, %04d at %02d:%02d:%02d\n",username,yearcheck,day, monthNames[month], year, hour, minute, second);
+        fclose(logf);
     FILE *f = fopen("Income_details.txt", "r");
     if (f == NULL) {
         printf("                    Error opening file.\n");

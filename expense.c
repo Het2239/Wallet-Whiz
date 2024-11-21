@@ -414,7 +414,27 @@ void expenseOnCategory(char *username) {
 }
 
 void totalmonthlyExpense(char *username) {
-    
+        FILE *logf=NULL;
+        
+        const char *monthNames[] = {
+        "January", "February", "March", "April", "May", "June", 
+        "July", "August", "September", "October", "November", "December"
+        };
+
+        // Get the current time
+        time_t currentTime;
+        time(&currentTime);
+
+        // Convert to local time
+        struct tm *localTime = localtime(&currentTime);
+
+        // Get day, month, year, hour, minute, second
+        int day = localTime->tm_mday;
+        int month = localTime->tm_mon; // 0-based index (0 = January)
+        int year = localTime->tm_year + 1900;
+        int hour = localTime->tm_hour;
+        int minute = localTime->tm_min;
+        int second = localTime->tm_sec;
 
         char monthcheck[10];
         int yearcheck;
@@ -440,6 +460,9 @@ void totalmonthlyExpense(char *username) {
             printf("                    \033[31mInvalid choice. Please try again.\033[0m\n");
             return;
         }
+        logf=fopen("log.txt","a");
+        fprintf(logf,"User : %s viewed monthly expense for %s, %d on %02d %s, %04d at %02d:%02d:%02d\n",username,monthcheck,yearcheck,day, monthNames[month], year, hour, minute, second);
+        fclose(logf);
 
         FILE *f = fopen("Expense_details.txt", "r");
         if (f == NULL) {
@@ -479,8 +502,28 @@ void totalmonthlyExpense(char *username) {
 
 void totalyearlyExpense(char *username) {
     
-
+        FILE *logf=NULL;
         int yearcheck;
+        const char *monthNames[] = {
+        "January", "February", "March", "April", "May", "June", 
+        "July", "August", "September", "October", "November", "December"
+        };
+
+        // Get the current time
+        time_t currentTime;
+        time(&currentTime);
+
+        // Convert to local time
+        struct tm *localTime = localtime(&currentTime);
+
+        // Get day, month, year, hour, minute, second
+        int day = localTime->tm_mday;
+        int month = localTime->tm_mon; // 0-based index (0 = January)
+        int year = localTime->tm_year + 1900;
+        int hour = localTime->tm_hour;
+        int minute = localTime->tm_min;
+        int second = localTime->tm_sec;
+
         float totalexp = 0;
 
         printf("                    Would you like to:\n                    1. Enter the date manually\n                    2. Use the current date\n                    Enter your choice : ");
@@ -503,6 +546,10 @@ void totalyearlyExpense(char *username) {
             printf("                    \033[31mInvalid choice. Please try again.\033[0m\n");
             return;
         }
+
+        logf=fopen("log.txt","a");
+        fprintf(logf,"User : %s viewed yearly expense for %d on %02d %s, %04d at %02d:%02d:%02d\n",username,yearcheck,day, monthNames[month], year, hour, minute, second);
+        fclose(logf);
 
         FILE *f = fopen("Expense_details.txt", "r");
 
