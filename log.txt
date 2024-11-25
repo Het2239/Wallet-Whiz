@@ -25,3 +25,7 @@ User : het logined in account on 25 November, 2024 at 13:39:50
 User : het exited the program on 25 November, 2024 at 13:39:50
 User : het failed to login on 25 November, 2024 at 13:45:25
 User : het failed to login on 25 November, 2024 at 13:45:25
+User : Het logined in account on 25 November, 2024 at 13:49:42
+User : Het viewed all expense on 25 November, 2024 at 13:49:42
+User : Het viewed monthly expense for November, 2024 on 25 November, 2024 at 13:51:09
+User : Het exited the program on 25 November, 2024 at 13:49:42

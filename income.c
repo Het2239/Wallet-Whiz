@@ -384,7 +384,7 @@ void monthlyIncome(char *username) {
         int yearcheck;
         int date;
         float totalinc = 0;
-        printf("                    Would you like to:\n                    1. Enter the date manually\n                    2. Use the current date\n                    Enter your choice : ");
+        printf("                    Would you like to:\n                    1. Enter the month manually\n                    2. Use the current month\n                    Enter your choice : ");
         int dateChoice;
         scanf("%d", &dateChoice);
 
@@ -475,7 +475,7 @@ void yearlyIncome(char *username) {
         int date;
         float totalinc = 0;
 
-        printf("                    Would you like to:\n                    1. Enter the date manually\n                    2. Use the current date\n                    Enter your choice : ");
+        printf("                    Would you like to:\n                    1. Enter the Year manually\n                    2. Use the current Year\n                    Enter your choice : ");
         int dateChoice;
         scanf("%d", &dateChoice);
 
