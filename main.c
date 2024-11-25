@@ -36,6 +36,12 @@ void showProgressBar(int percentage) {
 
 
 int main() {
+    int itr=1;
+    while (itr)
+    {
+        /* code */
+    
+    
     const char *monthNames[] = {
         "January", "February", "March", "April", "May", "June", 
         "July", "August", "September", "October", "November", "December"
@@ -99,7 +105,7 @@ int main() {
                 printf("\n\n\n\t\t\t\t\t\t\t\t\t\033[32mloading Sources!!!\033[0m\n\n");
                 for (int i = 0; i <= 100; ++i) {
                     showProgressBar(i); // Update progress bar
-                    usleep(20000); // Pause for 20 milliseconds (adjust as needed)
+                    usleep(10000); // Pause for 10 milliseconds (adjust as needed)
                 }
                 
 
@@ -532,7 +538,8 @@ int main() {
                     break;
                 case 0:
                     system("clear");
-                    flag=1;
+                    flag=0;
+                    
                     break;
                 
                 default:
@@ -542,6 +549,7 @@ int main() {
                 }
             }
         } while (flag==1);
+        break;
         
 
             
@@ -550,12 +558,14 @@ int main() {
 
         case 0:
             system("clear");
+            itr=0;
             break;
 
         default:
             printf("                    \033[31mInvalid choice.\033[0m\n");
+            itr=0;
             break;
     }
-
+    }
     return 0;
 }

@@ -1,27 +1,24 @@
-# Compiler
-CC = gcc
-CFLAGS = -Wall -g
+$(CC) = gcc
+run: main.o expense.o income.o login.o report.o savings.o
+	$(CC) main.o expense.o income.o login.o report.o savings.o -o output
 
-# Source files
-SRC = main.c income.c report.c savings.c login.c expense.c
+main.o: main.c login.h expense.h income.h report.h savings.h
+	$(CC) -c main.c
 
-# Object files (replace .c with .o)
-OBJ = $(SRC:.c=.o)
+expense.o: expense.c
+	$(CC) -c expense.c
 
-# Executable name
-EXEC = main
+income.o: income.c
+	$(CC) -c income.c
 
-# Default target
-all: $(EXEC)
+login.o: login.c login.h
+	$(CC) -c login.c
 
-# Rule to create the executable
-$(EXEC): $(OBJ)
-	$(CC) $(CFLAGS) -o $(EXEC) $(OBJ)
+report.o: report.c
+	$(CC) -c report.c
 
-# Rule to compile each source file into an object file
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+savings.o: savings.c
+	$(CC) -c savings.c
 
-# Clean up object files and the executable
-clean:
-	rm -f $(OBJ) $(EXEC)
+clear:
+	rm *.o output
