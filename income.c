@@ -96,6 +96,7 @@ void deleteIncome(char *username) {
         }
 
         printf("                    Would you like to:\n                    1. Enter the date manually\n                    2. Use the current date\n");
+        printf("                    Enter your choice : ");
         int dateChoice;
         scanf("%d", &dateChoice);
 
