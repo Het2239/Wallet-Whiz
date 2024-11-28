@@ -31,3 +31,4 @@ User : rtu failed to login on 28 November, 2024 at 08:31:58
 User : Het logined in account on 28 November, 2024 at 08:32:50
 User : Het exited the program on 28 November, 2024 at 08:32:50
 User : Het logined in account on 28 November, 2024 at 08:32:58
+User : Het exited the program on 28 November, 2024 at 08:32:58
