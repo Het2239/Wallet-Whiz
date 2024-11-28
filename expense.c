@@ -158,7 +158,7 @@ void deleteExpense(char *username) {
         return;
     }
 
-    printf("\t\t\t\t\t\n\033[34mMatching expenses for '%s':\033[0m\n", expenseName);
+    printf("\n\t\t\033[34mMatching expenses for '%s':\033[0m\n", expenseName);
     printf("                    -----------------------------------------------------------\n");
 
     // Display matching expenses with serial numbers

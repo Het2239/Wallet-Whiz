@@ -104,7 +104,7 @@ void deleteIncome(char *username) {
         return;
     }
 
-    printf("\t\t\t\t\t\n\033[34mMatching incomes for '%s':\033[0m\n", incomeName);
+    printf("\n\t\t\033[34mMatching incomes for '%s':\033[0m\n", incomeName);
     printf("                    -----------------------------------------------------------\n");
 
     // Display matching incomes with serial numbers
