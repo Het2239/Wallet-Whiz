@@ -216,37 +216,7 @@ void editIncome(char *username) {
     }
 
     struct user_income_details data;
-    printf("                    \033[34mEnter the new name of the Income:\033[0m ");
-    scanf(" %[^\n]s", data.name);
-    if(strlen(data.name)>50){
-        printf("                    \033[31mLength Exceeded! Try Again.\033[0m\n");
-    }
-    printf("                    \033[34mEnter a new description for the Income:\033[0m ");
-    scanf(" %[^\n]s", data.description);
-    if(strlen(data.description)>100){
-        printf("                    \033[31mLength Exceeded! Try Again.\033[0m\n");
-    }
-    printf("                    \033[34mEnter the new amount:\033[0m ");
-    scanf("%f", &data.amount);
 
-    // Repeat date choice for the new entry
-    printf("                    Would you like to:\n                    1. Enter the date manually\n                    2. Use the current date\n                    Enter your choice: ");
-    scanf("%d", &dateChoice);
-
-    if (dateChoice == 1) {
-        printf("                    \033[34mEnter the month (e.g., January):\033[0m ");
-        scanf("%9s", data.month);
-        printf("                    \033[34mEnter the date (e.g., 15):\033[0m ");
-        scanf("%d", &data.date);
-        printf("                    \033[34mEnter the year (e.g., 2023):\033[0m ");
-        scanf("%d", &data.year);
-    } else if (dateChoice == 2) {
-        getCurrentDatei(data.month, &data.date, &data.year);
-        printf("                    Using current date: \033[33m%s %d, %d\033[0m\n", data.month, data.date, data.year);
-    } else {
-        printf("                    \033[31mInvalid choice. Please try again.\033[0m\n");
-        return;
-    }
 
     FILE *f = fopen("Income_details.txt", "r");
     FILE *temp = fopen("Temp_income_details.txt", "w");

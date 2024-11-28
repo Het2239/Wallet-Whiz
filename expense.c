@@ -241,6 +241,7 @@ void editExpense(char *username) {
     
 
         char expenseName[50];
+        
         char month[10];
         int date, year;
 
@@ -250,13 +251,26 @@ void editExpense(char *username) {
         if(strlen(expenseName)>50){
         printf("                    \033[31mLength Exceeded! Try Again.\033[0m\n");
     }
-        printf("                    \033[34mEnter the month of the expense to edit (e.g., January):\033[0m ");
-        scanf("%s", month);
-        printf("                    \033[34mEnter the date of the expense to edit (e.g., 15):\033[0m ");
-        scanf("%d", &date);
-        printf("                    \033[34mEnter the year of the expense to edit (e.g., 2024):\033[0m ");
-        scanf("%d", &year);
+        printf("                    Would you like to:\n                    1. Enter the date manually\n                    2. Use the current date\n                    Enter your choice: ");
+        int dateChoice=0;
+        scanf("%d",&dateChoice);
 
+    if (dateChoice == 1) {
+        // Manual date input
+        printf("                    \033[34mEnter the month (e.g., January):\033[0m ");
+        scanf("%9s", month);  // Limits input to 9 characters
+        printf("                    \033[34mEnter the date (e.g., 15):\033[0m ");
+        scanf("%d", &date);
+        printf("                    \033[34mEnter the year (e.g., 2023):\033[0m ");
+        scanf("%d", &year);
+    } else if (dateChoice == 2) {
+        // Get current date automatically
+        getCurrentDate(month, &date, &year);
+        printf("                    Using current date: \033[33m%s %d, %d\033[0m\n", month, date, year);
+    } else {
+        printf("                    \033[31mInvalid choice. Please try again.\033[0m\n");
+        return;
+    }
         
 
         FILE *f = fopen("Expense_details.txt", "r");
@@ -608,7 +622,7 @@ struct Node {
 
 struct Node *head = NULL;
 
-// Function to add a new expense to the linked list
+
 void add_expense(struct user_expense_details details) {
     struct Node *newnode = (struct Node *)malloc(sizeof(struct Node));
     if (newnode == NULL) {
@@ -638,7 +652,7 @@ void add_expense(struct user_expense_details details) {
     }
 }
 
-// Function to save expense details to a file
+// writes to file
 void save_expense_to_file(struct user_expense_details details, const char *filename, char *username) {
     FILE *file = fopen(filename, "a");
     if (file == NULL) {
@@ -653,7 +667,7 @@ void save_expense_to_file(struct user_expense_details details, const char *filen
     fclose(file);
 }
 
-// Function to generate recurring expenses and save them to a file
+//takes data
 void generate_recurring_expense(struct user_expense_details base_expense, int interval_days, int num_periods,char *username) {
     time_t current_time;
     struct tm *time_info;

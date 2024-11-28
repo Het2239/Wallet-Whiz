@@ -73,3 +73,20 @@ User : Het exited the program on 28 November, 2024 at 20:17:21
 User : Het logined in account on 28 November, 2024 at 20:18:00
 User : Het edited an income on 28 November, 2024 at 20:18:15
 User : Het exited the program on 28 November, 2024 at 20:18:22
+User : Het logined in account on 28 November, 2024 at 20:39:51
+User : Het viewed all income statements on 28 November, 2024 at 20:39:59
+User : Het edited an income on 28 November, 2024 at 20:40:51
+User : Het exited the program on 28 November, 2024 at 20:40:54
+User : Het logined in account on 28 November, 2024 at 20:44:36
+User : Het exited the program on 28 November, 2024 at 20:44:37
+User : Het logined in account on 28 November, 2024 at 20:44:49
+User : Het viewed all income statements on 28 November, 2024 at 20:44:58
+User : Het edited an income on 28 November, 2024 at 20:45:10
+User : Het viewed all expense on 28 November, 2024 at 20:45:16
+User : Het edited an expense on 28 November, 2024 at 20:45:42
+User : Het exited the program on 28 November, 2024 at 20:45:42
+User : sadfg failed to login on 28 November, 2024 at 20:45:42
+User : Het logined in account on 28 November, 2024 at 20:48:34
+User : Het viewed all expense on 28 November, 2024 at 20:48:40
+User : Het edited an expense on 28 November, 2024 at 20:48:50
+User : Het exited the program on 28 November, 2024 at 20:48:54
