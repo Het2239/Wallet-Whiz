@@ -556,8 +556,12 @@ int main() {
                     fclose(logf);
                     break;
                 default:
-                    mflag=0;
-                    system("clear");
+                    mflag=1;
+                    // system("clear");
+                    printf("\n\n\t\t\t\t\t\t\t\t\t\033[31mInvalid Choice\033[0m\n");
+                    printf("\n\t\t\t\t\t\t\t\t\t\033[34mPress Enter to try again...\033[0m");
+                    getchar(); // Wait for user input to continue
+                    getchar(); // Handle newline from previous input
                     break;
                 }
             }while(mflag==1);
