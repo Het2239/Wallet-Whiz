@@ -83,92 +83,103 @@ void addIncome(char *username) {
 }
 
 void deleteIncome(char *username) {
-    
 
-        char incomeName[50];
-        char month[10];
-        int date, year;
+    char incomeName[50];
+    char fileUsername[50];
+    struct user_income_details details;
+    int deleted = 0;
+    int serialNo = 0;  // Counter for serial numbers
 
-        printf("                    \033[34mEnter the name of the Income to delete:\033[0m ");
-        scanf(" %[^\n]s", incomeName);
-        if(strlen(incomeName)>50){
+    // Take input for income name to filter matching records
+    printf("                    \033[34mEnter the name of the Income to delete:\033[0m ");
+    scanf(" %[^\n]s", incomeName);
+    if (strlen(incomeName) > 50) {
         printf("                    \033[31mLength Exceeded! Try Again.\033[0m\n");
+        return;
+    }
+
+    FILE *f = fopen("Income_details.txt", "r");
+    if (f == NULL) {
+        printf("                    \033[31mError opening file for reading.\033[0m\n");
+        return;
+    }
+
+    printf("\t\t\t\t\t\n\033[34mMatching incomes for '%s':\033[0m\n", incomeName);
+    printf("                    -----------------------------------------------------------\n");
+
+    // Display matching incomes with serial numbers
+    struct user_income_details matchedIncomes[100]; // Store matching records temporarily
+    while (fscanf(f, "%[^,], %49[^,], %99[^,], %f, %9[^,], %d, %d\n",
+                  fileUsername, details.name, details.description,
+                  &details.amount, details.month, &details.date, &details.year) != EOF) {
+        if (strcmp(username, fileUsername) == 0 && strcmp(incomeName, details.name) == 0) {
+            matchedIncomes[serialNo] = details; // Store matching record
+            printf("                    \033[1;31m[%d]\033[0m\n", serialNo + 1); // Display serial number
+            printf("                    \033[1;31mDescription:\033[0m %s\n", details.description);
+            printf("                    \033[1;31mAmount:\033[0m \033[32m%.2f\033[0m\n", details.amount);
+            printf("                    \033[1;31mDate:\033[0m %s %d, %d\n", details.month, details.date, details.year);
+            printf("                    -----------------------------------------------------------\n");
+            serialNo++;
         }
+    }
 
-        printf("                    Would you like to:\n                    1. Enter the date manually\n                    2. Use the current date\n");
-        printf("                    Enter your choice : ");
-        int dateChoice;
-        scanf("%d", &dateChoice);
+    fclose(f);
 
-        if (dateChoice == 1) {
-            // Manual date input
-            printf("                    \033[34mEnter the month (e.g., January):\033[0m ");
-            scanf("%s", month);
-            printf("                    \033[34mEnter the date (e.g., 15):\033[0m ");
-            scanf("%d", &date);
-            printf("                    \033[34mEnter the year (e.g., 2023):\033[0m ");
-            scanf("%d", &year);
-        } else if (dateChoice == 2) {
-            // Get current date automatically
-            getCurrentDatei(month, &date, &year);
-            printf("                    Using current date: \033[33m%s %d, %d\033[0m\n", month, date, year);
-        } else {
-            printf("                    \033[31mInvalid choice. Please try again.\033[0m\n");
-            return;
-        }
+    if (serialNo == 0) {
+        // No matching incomes found
+        printf("                    \033[31mNo matching incomes found for '%s'.\033[0m\n", incomeName);
+        return;
+    }
 
-        FILE *f = fopen("Income_details.txt", "r");
-        FILE *temp = fopen("Temp_income_details.txt", "w");
-        if (f == NULL || temp == NULL) {
-            printf("                    \033[31mError opening file.\033[0m\n");
-            return;
-        }
+    // Ask user to choose the serial number of the income to delete
+    printf("                    \033[34mEnter the serial number of the income to delete:\033[0m ");
+    int choice;
+    scanf("%d", &choice);
 
-        char fileUsername[50];
-        struct user_income_details details;
-        int deleted = 0;
+    if (choice < 1 || choice > serialNo) {
+        printf("                    \033[31mInvalid choice. Please try again.\033[0m\n");
+        return;
+    }
 
-        while (fscanf(f, "%[^,], %49[^,], %99[^,], %f, %9[^,], %d, %d\n",
-                      fileUsername, details.name, details.description,
-                      &details.amount, details.month, &details.date, &details.year) != EOF) {
-            if (strcmp(username, fileUsername) == 0 &&
-                strcmp(incomeName, details.name) == 0 &&
-                strcmp(month, details.month) == 0 &&
-                details.date == date && details.year == year) {
-                    printf("                    -----------------------------------------------------------\n");
-                    printf("                    \033[1;32mIncome Name:\033[0m %s\n", details.name);
-                    printf("                    \033[1;32mDescription:\033[0m %s\n", details.description);
-                    printf("                    \033[1;32mAmount:\033[0m \033[32m%.2f\033[0m\n", details.amount);
-                    printf("                    \033[1;32mDate:\033[0m %s %d, %d\n", details.month, details.date, details.year);
-                    printf("                    -----------------------------------------------------------\n");
-                    printf("                    Is this the record you want to delete (1. Yes / 0. No) :");
-                    int ch=0;
-                    scanf("%d",&ch);
-                    if (ch==0)
-                    {
-                        return;
-                    }
-                deleted = 1; // Mark the income as found and delete it by not writing to the temp file
-            } else {
-                fprintf(temp, "%s, %s, %s, %.2f, %s, %d, %d\n",
-                        fileUsername, details.name, details.description,
-                        details.amount, details.month, details.date, details.year);
+    // Reopen file to filter out the chosen income
+    f = fopen("Income_details.txt", "r");
+    FILE *temp = fopen("Temp_income_details.txt", "w");
+    if (temp == NULL) {
+        printf("                    \033[31mError opening temporary file for writing.\033[0m\n");
+        fclose(f);
+        return;
+    }
+
+    serialNo = 0; // Reset serialNo for comparison
+    while (fscanf(f, "%[^,], %49[^,], %99[^,], %f, %9[^,], %d, %d\n",
+                  fileUsername, details.name, details.description,
+                  &details.amount, details.month, &details.date, &details.year) != EOF) {
+        if (strcmp(username, fileUsername) == 0 && strcmp(incomeName, details.name) == 0) {
+            serialNo++;
+            if (serialNo == choice) {
+                // Skip writing the chosen record to delete it
+                deleted = 1;
+                continue;
             }
         }
+        // Write all other records to the temporary file
+        fprintf(temp, "%s, %s, %s, %.2f, %s, %d, %d\n",
+                fileUsername, details.name, details.description,
+                details.amount, details.month, details.date, details.year);
+    }
 
-        fclose(f);
-        fclose(temp);
+    fclose(f);
+    fclose(temp);
 
-        if (deleted) {
-            remove("Income_details.txt");
-            rename("Temp_income_details.txt", "Income_details.txt");
-            printf("                    \033[32mIncome deleted successfully.\033[0m\n");
-        } else {
-            remove("Temp_income_details.txt");
-            printf("                    \033[31mNo matching income found for deletion.\033[0m\n");
-        }
-
-        
+    // Replace the original file with the updated file if deletion was successful
+    if (deleted) {
+        remove("Income_details.txt");
+        rename("Temp_income_details.txt", "Income_details.txt");
+        printf("                    \033[32mIncome deleted successfully.\033[0m\n");
+    } else {
+        remove("Temp_income_details.txt");
+        printf("                    \033[31mFailed to delete the income.\033[0m\n");
+    }
 }
 
 void editIncome(char *username) {

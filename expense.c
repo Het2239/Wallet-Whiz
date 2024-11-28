@@ -137,96 +137,104 @@ void readExpense(char *username) {
 }
 
 void deleteExpense(char *username) {
-    
 
-        char expenseName[50];
-        char month[10];
-        int date, year;
+    char expenseName[50];
+    char fileUsername[50];
+    struct user_expense_details details;
+    int deleted = 0;
+    int serialNo = 0;  // Counter for serial numbers
 
-        // Take input for expense name, month, date, and year to identify which record to delete
-        printf("                    \033[34mEnter the name of the expense to delete:\033[0m ");
-        scanf(" %[^\n]s", expenseName);
-        if(strlen(expenseName)>50){
+    // Take input for expense name to filter matching records
+    printf("                    \033[34mEnter the name of the expense to delete:\033[0m ");
+    scanf(" %[^\n]s", expenseName);
+    if (strlen(expenseName) > 50) {
         printf("                    \033[31mLength Exceeded! Try Again.\033[0m\n");
+        return;
     }
-        printf("                    Would you like to:\n                    1. Enter the date manually\n                    2. Use the current date\n                    Enter your choice : ");
-        int dateChoice;
-        scanf("%d", &dateChoice);
 
-        if (dateChoice == 1) {
-            // Manual date input
-            printf("                    Enter the month (e.g., January): ");
-            scanf("%s", month);
-            printf("                    Enter the date (e.g., 15): ");
-            scanf("%d", &date);
-            printf("                    Enter the year (e.g., 2023): ");
-            scanf("%d", &year);
-        } else if (dateChoice == 2) {
-            // Get current date automatically
-            getCurrentDate(month, &date, &year);
-            printf("                    Using current date: \033[35m%s %d, %d\033[0m\n", month, date, year);
-        } else {
-            printf("                    \033[31mInvalid choice. Please try again.\033[0m\n");
-            return;
+    FILE *f = fopen("Expense_details.txt", "r");
+    if (f == NULL) {
+        printf("                    \033[31mError opening file for reading.\033[0m\n");
+        return;
+    }
+
+    printf("\t\t\t\t\t\n\033[34mMatching expenses for '%s':\033[0m\n", expenseName);
+    printf("                    -----------------------------------------------------------\n");
+
+    // Display matching expenses with serial numbers
+    struct user_expense_details matchedExpenses[100]; // Store matching records temporarily
+    while (fscanf(f, "%49[^,], %49[^,], %99[^,], %c, %f, %9[^,], %d, %d\n",
+                  fileUsername, details.name, details.description, &details.category,
+                  &details.amount, details.month, &details.date, &details.year) != EOF) {
+        if (strcmp(username, fileUsername) == 0 && strcmp(expenseName, details.name) == 0) {
+            matchedExpenses[serialNo] = details; // Store matching record
+            printf("                    \033[1;31m[%d]\033[0m\n", serialNo + 1); // Display serial number
+            printf("                    \033[1;31mDescription:\033[0m %s\n", details.description);
+            printf("                    \033[1;31mCategory:\033[0m %c\n", details.category);
+            printf("                    \033[1;31mAmount:\033[0m \033[31m%.2f\033[0m\n", details.amount);
+            printf("                    \033[1;31mDate:\033[0m %s %d, %d\n", details.month, details.date, details.year);
+            printf("                    -----------------------------------------------------------\n");
+            serialNo++;
         }
+    }
 
-        FILE *f = fopen("Expense_details.txt", "r");
-        FILE *temp = fopen("Temp_expense_details.txt", "w");
-        if (f == NULL || temp == NULL) {
-            printf("Error opening file.\n");
-            return;
-        }
+    fclose(f);
 
-        char fileUsername[50];
-        struct user_expense_details details;
-        int deleted = 0;
+    if (serialNo == 0) {
+        // No matching expenses found
+        printf("                    \033[31mNo matching expenses found for '%s'.\033[0m\n", expenseName);
+        return;
+    }
 
-        while (fscanf(f, "%49[^,], %49[^,], %99[^,], %c, %f, %9[^,], %d, %d\n",
-                      fileUsername, details.name, details.description, &details.category,
-                      &details.amount, details.month, &details.date, &details.year) != EOF) {
-            // Check if the current record matches the input criteria for deletion
-            if (strcmp(username, fileUsername) == 0 &&
-                strcmp(expenseName, details.name) == 0 &&
-                strcmp(month, details.month) == 0 &&
-                details.date == date && details.year == year) {
-                printf("                    -----------------------------------------------------------\n");
-                printf("                    \033[1;31mName:\033[0m %s\n", details.name);
-                printf("                    \033[1;31mDescription:\033[0m %s\n", details.description);
-                printf("                    \033[1;31mCategory:\033[0m %c\n", details.category);
-                printf("                    \033[1;31mAmount:\033[0m \033[31m%.2f\033[0m\n", details.amount);
-                printf("                    \033[1;31mDate:\033[0m %s %d, %d\n", details.month, details.date, details.year);
-                printf("                    -----------------------------------------------------------\n");
-                printf("                    Is this the record you want to delete (1. Yes / 0. No) :");
-                int ch=0;
-                scanf("%d",&ch);
-                if (ch==0)
-                {
-                    return;
-                }
-                
-                deleted = 1; // Mark the expense as found and delete it by not writing to the temp file
-            } else {
-                // Write non-matching records to the temp file
-                fprintf(temp, "%s, %s, %s, %c, %.2f, %s, %d, %d\n",
-                        fileUsername, details.name, details.description, details.category,
-                        details.amount, details.month, details.date, details.year);
+    // Ask user to choose the serial number of the expense to delete
+    printf("                    \033[34mEnter the serial number of the expense to delete:\033[0m ");
+    int choice;
+    scanf("%d", &choice);
+
+    if (choice < 1 || choice > serialNo) {
+        printf("                    \033[31mInvalid choice. Please try again.\033[0m\n");
+        return;
+    }
+
+    // Reopen file to filter out the chosen expense
+    f = fopen("Expense_details.txt", "r");
+    FILE *temp = fopen("Temp_expense_details.txt", "w");
+    if (temp == NULL) {
+        printf("                    \033[31mError opening temporary file for writing.\033[0m\n");
+        fclose(f);
+        return;
+    }
+
+    serialNo = 0; // Reset serialNo for comparison
+    while (fscanf(f, "%49[^,], %49[^,], %99[^,], %c, %f, %9[^,], %d, %d\n",
+                  fileUsername, details.name, details.description, &details.category,
+                  &details.amount, details.month, &details.date, &details.year) != EOF) {
+        if (strcmp(username, fileUsername) == 0 && strcmp(expenseName, details.name) == 0) {
+            serialNo++;
+            if (serialNo == choice) {
+                // Skip writing the chosen record to delete it
+                deleted = 1;
+                continue;
             }
         }
+        // Write all other records to the temporary file
+        fprintf(temp, "%s, %s, %s, %c, %.2f, %s, %d, %d\n",
+                fileUsername, details.name, details.description, details.category,
+                details.amount, details.month, details.date, details.year);
+    }
 
-        fclose(f);
-        fclose(temp);
+    fclose(f);
+    fclose(temp);
 
-        // Replace the original file with the updated file if deletion was successful
-        if (deleted) {
-            remove("Expense_details.txt");
-            rename("Temp_expense_details.txt", "Expense_details.txt");
-            printf("                    \033[32mExpense deleted successfully.\033[0m\n");
-        } else {
-            remove("Temp_expense_details.txt");
-            printf("                    \033[31mNo matching expense found for deletion.\033[0m\n");
-        }
-
-        
+    // Replace the original file with the updated file if deletion was successful
+    if (deleted) {
+        remove("Expense_details.txt");
+        rename("Temp_expense_details.txt", "Expense_details.txt");
+        printf("                    \033[32mExpense deleted successfully.\033[0m\n");
+    } else {
+        remove("Temp_expense_details.txt");
+        printf("                    \033[31mFailed to delete the expense.\033[0m\n");
+    }
 }
 
 void editExpense(char *username) {

@@ -44,3 +44,20 @@ User : Het logined in account on 28 November, 2024 at 19:20:22
 User : Het exited the program on 28 November, 2024 at 19:20:37
 User : Het logined in account on 28 November, 2024 at 19:21:08
 User : Het exited the program on 28 November, 2024 at 19:21:16
+User : Het logined in account on 28 November, 2024 at 19:25:38
+User : Het viewed all expense on 28 November, 2024 at 19:25:43
+User : Het added an expense on 28 November, 2024 at 19:26:00
+User : Het added an expense on 28 November, 2024 at 19:26:14
+User : Het deleted an expense on 28 November, 2024 at 19:26:34
+User : Het viewed all expense on 28 November, 2024 at 19:26:42
+User : Het exited the program on 28 November, 2024 at 19:26:45
+User : putta registered an account on 28 November, 2024 at 19:29:12
+User : putta logined in account on 28 November, 2024 at 19:29:21
+User : putta added an expense on 28 November, 2024 at 19:29:52
+User : putta viewed all expense on 28 November, 2024 at 19:30:04
+User : putta viewed yearly expense report for year 2024 on 28 November, 2024 at 19:30:13
+User : putta viewed yearly Expense report on 28 November, 2024 at 19:30:13
+User : putta added an income on 28 November, 2024 at 19:30:39
+User : putta viewed yearly expense report for year 2024 on 28 November, 2024 at 19:30:45
+User : putta viewed yearly Expense report on 28 November, 2024 at 19:30:45
+User : putta exited the program on 28 November, 2024 at 19:31:07
