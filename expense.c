@@ -48,7 +48,7 @@ void enterExpense(char *username) {
         if(strlen(details.description)>100){
         printf("                    \033[31mLength Exceeded! Try Again.\033[0m\n");
     }
-        printf("                    \033[34mEnter the category (U, H, S, P, O):\033[0m ");
+        printf("                    \033[34mCategories:U->Utility,H->Healthcare,S->Savings,P->Personal,O->Other\n                    Enter the category (U, H, S, P, O):\033[0m ");
         scanf(" %c", &details.category); // Ensure leading space to read a single character correctly
         if (details.category == 'U' ||details.category == 'H' ||details.category == 'S' ||details.category == 'P' ||details.category == 'O' )
         {
@@ -296,7 +296,7 @@ void editExpense(char *username) {
                 if(strlen(data.description)>100){
                     printf("                    \033[31mLength Exceeded! Try Again.\033[0m\n");
                 }
-                printf("                    \033[34mEnter the category (U, H, S, P, O):\033[0m ");
+                printf("                    \033[34mCategories:U->Utility,H->Healthcare,S->Savings,P->Personal,O->Other\n                    Enter the category (U, H, S, P, O):\033[0m ");
                 scanf(" %c", &data.category); // Ensure leading space to read a single character correctly
                 if (data.category == 'U' ||data.category == 'H' ||data.category == 'S' ||data.category == 'P' ||data.category == 'O' )
                 {
@@ -364,7 +364,7 @@ void expenseOnCategory(char *username) {
     
 
         char cat;
-        printf("\033[34mEnter the category of expense you want to view (U, H, S, P, O):\033[0m ");
+        printf("\033[34mCategories:U->Utility,H->Healthcare,S->Savings,P->Personal,O->Other\n                    Enter the category (U, H, S, P, O):\033[0m ");
         scanf(" %c", &cat);
         if (cat == 'U' ||cat == 'H' ||cat == 'S' ||cat == 'P' ||cat == 'O' )
                 {
@@ -681,7 +681,7 @@ void addReccuringexpense(char *username){
         if(strlen(new_expense.description)>100){
             printf("                    \033[31mLength Exceeded! Try Again.\033[0m\n");
         }
-        printf("                    \033[34mEnter the category (U, H, S, P, O):\033[0m ");
+        printf("                    \033[34mCategories:U->Utility,H->Healthcare,S->Savings,P->Personal,O->Other\n                    Enter the category (U, H, S, P, O):\033[0m ");
         scanf(" %c", &new_expense.category); // Ensure leading space to read a single character correctly
         if (new_expense.category == 'U' ||new_expense.category == 'H' ||new_expense.category == 'S' ||new_expense.category == 'P' ||new_expense.category == 'O' )
         {

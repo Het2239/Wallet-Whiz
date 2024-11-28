@@ -34,19 +34,7 @@ void showProgressBar(int percentage) {
     fflush(stdout); // Ensure the output is updated immediately
 }
 
-
-int main() {
-    int itr=1;
-    while (itr)
-    {
-        /* code */
-    
-    
-    const char *monthNames[] = {
-        "January", "February", "March", "April", "May", "June", 
-        "July", "August", "September", "October", "November", "December"
-    };
-
+void getCurrentDateTime(int *day, int *month, int *year, int *hour, int *minute, int *second) {
     // Get the current time
     time_t currentTime;
     time(&currentTime);
@@ -54,13 +42,28 @@ int main() {
     // Convert to local time
     struct tm *localTime = localtime(&currentTime);
 
-    // Get day, month, year, hour, minute, second
-    int day = localTime->tm_mday;
-    int month = localTime->tm_mon; // 0-based index (0 = January)
-    int year = localTime->tm_year + 1900;
-    int hour = localTime->tm_hour;
-    int minute = localTime->tm_min;
-    int second = localTime->tm_sec;
+    // Retrieve date and time components
+    *day = localTime->tm_mday;
+    *month = localTime->tm_mon;  // 0-based index (0 = January)
+    *year = localTime->tm_year + 1900;
+    *hour = localTime->tm_hour;
+    *minute = localTime->tm_min;
+    *second = localTime->tm_sec;
+}
+
+// Array of month names
+const char *monthNames[] = {
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+};
+
+
+int main() {
+    int itr=1;
+    int day, month, year, hour, minute, second;
+    while (itr)
+    {
+      
     
     int choice;
     struct user_data user;
@@ -82,6 +85,7 @@ int main() {
                 flg=registerUser(&user);
             } while (flg==0);
             logf=fopen("log.txt","a");
+            getCurrentDateTime(&day, &month, &year, &hour, &minute, &second);
             fprintf(logf,"User : %s registered an account on %02d %s, %04d at %02d:%02d:%02d\n",user.username,day, monthNames[month], year, hour, minute, second);
             fclose(logf);
             
@@ -100,6 +104,7 @@ int main() {
             if (stat == 1)
             {   
                 logf=fopen("log.txt","a");
+                getCurrentDateTime(&day, &month, &year, &hour, &minute, &second);
                 fprintf(logf,"User : %s logined in account on %02d %s, %04d at %02d:%02d:%02d\n",user.username,day, monthNames[month], year, hour, minute, second);
                 fclose(logf);
                 printf("\n\n\n\t\t\t\t\t\t\t\t\t\033[32mloading Sources!!!\033[0m\n\n");
@@ -147,7 +152,8 @@ int main() {
                     do
                     {
                         enterExpense(user.username);
-                        logf=fopen("log.txt","a");
+                        logf=fopen("log.txt","a");time_t currentTime;
+                        getCurrentDateTime(&day, &month, &year, &hour, &minute, &second);
                         fprintf(logf,"User : %s added an expense on %02d %s, %04d at %02d:%02d:%02d\n",user.username,day, monthNames[month], year, hour, minute, second);
                         fclose(logf);
 
@@ -178,6 +184,7 @@ int main() {
                     {
                         addReccuringexpense(user.username);
                         logf=fopen("log.txt","a");
+                        getCurrentDateTime(&day, &month, &year, &hour, &minute, &second);
                         fprintf(logf,"User : %s added a recurring expense on %02d %s, %04d at %02d:%02d:%02d\n",user.username,day, monthNames[month], year, hour, minute, second);
                         fclose(logf);
 
@@ -208,6 +215,7 @@ int main() {
                     {
                         editExpense(user.username);
                         logf=fopen("log.txt","a");
+                        getCurrentDateTime(&day, &month, &year, &hour, &minute, &second);
                         fprintf(logf,"User : %s edited an expense on %02d %s, %04d at %02d:%02d:%02d\n",user.username,day, monthNames[month], year, hour, minute, second);
                         fclose(logf);
 
@@ -238,6 +246,7 @@ int main() {
                     {
                         deleteExpense(user.username);
                         logf=fopen("log.txt","a");
+                        getCurrentDateTime(&day, &month, &year, &hour, &minute, &second);
                         fprintf(logf,"User : %s deleted an expense on %02d %s, %04d at %02d:%02d:%02d\n",user.username,day, monthNames[month], year, hour, minute, second);
                         fclose(logf);
 
@@ -258,12 +267,13 @@ int main() {
                         
                         }
                     } while (f3==1);
-                    mflag=1;
+                    mflag=1;    
                     break;
                 case 5:
                     
                     system("clear");
                     logf=fopen("log.txt","a");
+                    getCurrentDateTime(&day, &month, &year, &hour, &minute, &second);
                     fprintf(logf,"User : %s viewed all expense on %02d %s, %04d at %02d:%02d:%02d\n",user.username,day, monthNames[month], year, hour, minute, second);
                     fclose(logf);
                     banner();
@@ -283,6 +293,10 @@ int main() {
                     banner();
                     
                     totalmonthlyExpense(user.username);
+                    logf=fopen("log.txt","a");
+                    getCurrentDateTime(&day, &month, &year, &hour, &minute, &second);
+                    fprintf(logf,"User : %s viewed monthly expense satatements on %02d %s, %04d at %02d:%02d:%02d\n",user.username,day, monthNames[month], year, hour, minute, second);
+                    fclose(logf);
                     printf("\n\n\n\t\t\t\t\033[3;34mPress Enter to continue...\033[0m");
                     getchar(); // Wait for user input to continue
                     getchar(); // Handle newline from previous inpu
@@ -296,7 +310,10 @@ int main() {
                     banner();
                     
                     totalyearlyExpense(user.username);
-                    
+                    logf=fopen("log.txt","a");
+                    getCurrentDateTime(&day, &month, &year, &hour, &minute, &second);
+                    fprintf(logf,"User : %s viewed yearly expense statements on %02d %s, %04d at %02d:%02d:%02d\n",user.username,day, monthNames[month], year, hour, minute, second);
+                    fclose(logf);
                     printf("\n\n\n\t\t\t\t\033[3;34mPress Enter to continue...\033[0m");
                     getchar(); // Wait for user input to continue
                     getchar(); // Handle newline from previous input
@@ -314,6 +331,7 @@ int main() {
                         
                         expenseOnCategory(user.username);
                         logf=fopen("log.txt","a");
+                        getCurrentDateTime(&day, &month, &year, &hour, &minute, &second);
                         fprintf(logf,"User : %s viewed expense for a category on %02d %s, %04d at %02d:%02d:%02d\n",user.username,day, monthNames[month], year, hour, minute, second);
                         fclose(logf);
                         printf("\n                    \033[32m1. Run again\033[0m\n");
@@ -344,6 +362,7 @@ int main() {
                         
                         addIncome(user.username);
                         logf=fopen("log.txt","a");
+                        getCurrentDateTime(&day, &month, &year, &hour, &minute, &second);
                         fprintf(logf,"User : %s added an income on %02d %s, %04d at %02d:%02d:%02d\n",user.username,day, monthNames[month], year, hour, minute, second);
                         fclose(logf);
                         printf("\n                    \033[32m1. Run again\033[0m\n");
@@ -373,6 +392,7 @@ int main() {
                     {
                         editIncome(user.username);
                         logf=fopen("log.txt","a");
+                        getCurrentDateTime(&day, &month, &year, &hour, &minute, &second);
                         fprintf(logf,"User : %s edited an income on %02d %s, %04d at %02d:%02d:%02d\n",user.username,day, monthNames[month], year, hour, minute, second);
                         fclose(logf);
                         printf("\n                    \033[32m1. Run again\033[0m\n");
@@ -402,6 +422,7 @@ int main() {
                     {
                         deleteIncome(user.username);
                         logf=fopen("log.txt","a");
+                        getCurrentDateTime(&day, &month, &year, &hour, &minute, &second);
                         fprintf(logf,"User : %s deleted an income on %02d %s, %04d at %02d:%02d:%02d\n",user.username,day, monthNames[month], year, hour, minute, second);
                         fclose(logf);
 
@@ -431,6 +452,7 @@ int main() {
                     
                     viewIncome(user.username);
                     logf=fopen("log.txt","a");
+                    getCurrentDateTime(&day, &month, &year, &hour, &minute, &second);
                     fprintf(logf,"User : %s viewed all income statements on %02d %s, %04d at %02d:%02d:%02d\n",user.username,day, monthNames[month], year, hour, minute, second);
                     fclose(logf);
                     printf("\n\n\n\t\t\t\t\033[3;34mPress Enter to continue...\033[0m");
@@ -445,6 +467,10 @@ int main() {
                     banner();
                    
                     monthlyIncome(user.username);
+                    logf=fopen("log.txt","a");
+                    getCurrentDateTime(&day, &month, &year, &hour, &minute, &second);
+                    fprintf(logf,"User : %s viewed monthly income statements on %02d %s, %04d at %02d:%02d:%02d\n",user.username,day, monthNames[month], year, hour, minute, second);
+                    fclose(logf);
                     printf("\n\n\n\t\t\t\t\033[3;34mPress Enter to continue...\033[0m");
                     getchar(); // Wait for user input to continue
                     getchar(); // Handle newline from previous inpu
@@ -457,6 +483,10 @@ int main() {
                     banner();
                     
                     yearlyIncome(user.username);
+                    logf=fopen("log.txt","a");
+                    getCurrentDateTime(&day, &month, &year, &hour, &minute, &second);
+                    fprintf(logf,"User : %s viewed yearly income statements on %02d %s, %04d at %02d:%02d:%02d\n",user.username,day, monthNames[month], year, hour, minute, second);
+                    fclose(logf);
                     printf("\n\n\n\t\t\t\t\033[3;34mPress Enter to continue...\033[0m");
                     getchar(); // Wait for user input to continue
                     getchar(); // Handle newline from previous inpu
@@ -470,6 +500,10 @@ int main() {
                     
                         
                     monthlyexpenseReport(user.username);
+                    logf=fopen("log.txt","a");
+                    getCurrentDateTime(&day, &month, &year, &hour, &minute, &second);
+                    fprintf(logf,"User : %s viewed monthly expense report on %02d %s, %04d at %02d:%02d:%02d\n",user.username,day, monthNames[month], year, hour, minute, second);
+                    fclose(logf);
                     printf("\n\n\n\t\t\t\t\033[3;34mPress Enter to continue...\033[0m");
                     getchar(); // Wait for user input to continue
                     getchar(); // Handle newline from previous inpu
@@ -483,6 +517,10 @@ int main() {
                     
                         
                     yearlyexpenseReport(user.username);
+                    logf=fopen("log.txt","a");
+                    getCurrentDateTime(&day, &month, &year, &hour, &minute, &second);
+                    fprintf(logf,"User : %s viewed yearly Expense report on %02d %s, %04d at %02d:%02d:%02d\n",user.username,day, monthNames[month], year, hour, minute, second);
+                    fclose(logf);
                     printf("\n\n\n\t\t\t\t\033[3;34mPress Enter to continue...\033[0m");
                     getchar(); // Wait for user input to continue
                     getchar(); // Handle newline from previous inpu
@@ -497,6 +535,7 @@ int main() {
                         
                     savings(user.username);
                     logf=fopen("log.txt","a");
+                    getCurrentDateTime(&day, &month, &year, &hour, &minute, &second);
                     fprintf(logf,"User : %s viewed all savings on %02d %s, %04d at %02d:%02d:%02d\n",user.username,day, monthNames[month], year, hour, minute, second);
                     fclose(logf);
                     printf("\n\n\n\t\t\t\t\033[3;34mPress Enter to continue...\033[0m");
@@ -512,6 +551,7 @@ int main() {
                     mflag=0;
                     system("clear");
                     logf=fopen("log.txt","a");
+                    getCurrentDateTime(&day, &month, &year, &hour, &minute, &second);
                     fprintf(logf,"User : %s exited the program on %02d %s, %04d at %02d:%02d:%02d\n",user.username,day, monthNames[month], year, hour, minute, second);
                     fclose(logf);
                     break;
@@ -525,6 +565,7 @@ int main() {
             }
             else{
                 logf=fopen("log.txt","a");
+                getCurrentDateTime(&day, &month, &year, &hour, &minute, &second);
                 fprintf(logf,"User : %s failed to login on %02d %s, %04d at %02d:%02d:%02d\n",user.username,day, monthNames[month], year, hour, minute, second);
                 fclose(logf);
                 printf("                    \033[32m1. Try Again\033[0m\n                    \033[31m0. Exit\033[0m\n                    \033[36mEnter your choice :\033[0m ");
