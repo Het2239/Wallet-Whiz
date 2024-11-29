@@ -356,8 +356,8 @@ void editExpense(char *username) {
                 deleted = 1; // Mark the expense as found and delete it by not writing to the temp file
             } else {
                 // Write non-matching records to the temp file
-                fprintf(temp, "%s, %s, %s, %.2f, %s, %d, %d\n",
-                        fileUsername, details.name, details.description,
+                fprintf(temp, "%s, %s, %s, %c, %.2f, %s, %d, %d\n",
+                        fileUsername, details.name, details.description,details.category,
                         details.amount, details.month, details.date, details.year);
             }
         }
