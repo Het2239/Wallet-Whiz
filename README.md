@@ -107,8 +107,8 @@ Contributions are welcome! Follow these steps to contribute:
 
 | **S.No.** | **Name**              | **Roll No.** | **Email**                                  | **Tasks**                                  |
 |-----------|-----------------------|--------------|--------------------------------------------|-------------------------------------------|
-| 1         | Het Chavadia          | BT2024052    | [Het.Chavadia@iiitb.ac.in](mailto:Het.Chavadia@iiitb.ac.in)      | Functional logic and login structure      |
-| 2         | Raghunandhan P        | BT2024029    | [Raghunandhan.P@iiitb.ac.in](mailto:Raghunandhan.P@iiitb.ac.in)  | Functional logic and log file implementation |
+| 1         | Het Chavadia          | BT2024052    | [Het.Chavadia@iiitb.ac.in](mailto:Het.Chavadia@iiitb.ac.in)      | Functional logic, logfile and login structure      |
+| 2         | Raghunandhan P        | BT2024029    | [Raghunandhan.P@iiitb.ac.in](mailto:Raghunandhan.P@iiitb.ac.in)  | Functional logic implementation |
 | 3         | Rohith Sai M          | BT2024144    | [Rohith.Sai@iiitb.ac.in](mailto:Rohith.Sai@iiitb.ac.in)          | Program structure and UI implementation   |
 | 4         | Haneesh Reddy B       | BT2024126    | [Haneesh.Bandi@iiitb.ac.in](mailto:Haneesh.Bandi@iiitb.ac.in)    | Functional logic implementation           |
 | 5         | Laksh V Chovatiya     | BT2024056    | [Laksh.Chovatiya@iiitb.ac.in](mailto:Laksh.Chovatiya@iiitb.ac.in)| Report function implementation            |
