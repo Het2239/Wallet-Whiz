@@ -85,7 +85,7 @@ void savings(char *username) {
             printf("                    -----------------------------------------------------------\n");
             buffernode = buffernode->next;
         }
-        printf("                    Total savings for \033[33m%s\033[0m: \033[32m%f\033[0m\n",username,totalsave);
+        printf("                    Total savings for \033[33m%s\033[0m: \033[32m%.2f\033[0m\n",username,totalsave);
         printf("                    -----------------------------------------------------------\n");
     } else {
         printf("                    \033[31mNo Savings found for user:\033[0m %s\n", username);

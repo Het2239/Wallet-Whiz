@@ -96,3 +96,14 @@ User : Het viewed monthly expense satatements on 28 November, 2024 at 21:17:31
 User : Het viewed yearly expense report for year 2024 on 28 November, 2024 at 21:17:39
 User : Het viewed yearly Expense report on 28 November, 2024 at 21:17:39
 User : Het exited the program on 28 November, 2024 at 21:18:51
+User : Het failed to login on 28 November, 2024 at 22:18:51
+User : Hetdfs failed to login on 28 November, 2024 at 22:19:05
+User : Het logined in account on 28 November, 2024 at 22:19:22
+User : Het viewed monthly expense report for month November, 2024 on 28 November, 2024 at 22:20:44
+User : Het viewed monthly expense report on 28 November, 2024 at 22:20:44
+User : Het exited the program on 28 November, 2024 at 22:23:15
+User : Het logined in account on 29 November, 2024 at 08:40:48
+User : Het viewed all savings on 29 November, 2024 at 08:40:54
+User : Het added an expense on 29 November, 2024 at 08:41:06
+User : Het viewed all savings on 29 November, 2024 at 08:41:13
+User : Het exited the program on 29 November, 2024 at 08:41:18
