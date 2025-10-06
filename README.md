@@ -125,7 +125,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE.txt) f
 ## Contact
 
 For any questions or suggestions, please contact:  
-[team.07.iiitb@gmail.com](mailto:team.07.iiitb@gmail.com)
+[hetchavadiya@gmail.com](mailto:hetchavadiya@gmail.com)
 
 ---
 
